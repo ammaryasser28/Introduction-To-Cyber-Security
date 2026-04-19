@@ -713,7 +713,4 @@ graph TD
     LP --> LE[اعطِ الحد الأدنى فقط]
 ```
 
----
 
-_هذه الملاحظات جزء من مادة **Introduction to Cyber Security** — Lecture 01_
-_مُعدّة للنشر على GitHub بتنسيق Markdown_
