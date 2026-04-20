@@ -3,8 +3,6 @@
 > تفهم الـ fundamentals قبل ما تأمّن أي system — تبدأ رحلتك في Cybersecurity، وتستوعب إن الـ Security مش بس technology بل mindset وثقافة وسياسة.
 ---
 
-# Introduction to Cybersecurity — Core Concepts: CIA, AAA, PPT & Access Control
-
 ## Table of Contents
 
 - [1. The Big Picture — How Everything Connects](#1-the-big-picture--how-everything-connects)
