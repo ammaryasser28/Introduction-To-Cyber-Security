@@ -2,8 +2,7 @@
 
 ---
 > **الهدف من الـ Section ده:**
-> هتفهم إزاي الـ Network بتتبنى وإيه الأجهزة اللي بتتحكم في الـ Traffic، وإزاي تقدر كـ Defender تشوف اللي بيحصل على الشبكة وتوقف الـ Attackers.
-
+> تفهم الـ fundamentals قبل ما تأمّن أي system — تبدأ رحلتك في Cybersecurity، وتستوعب إن الـ Security مش بس technology بل mindset وثقافة وسياسة.
 ---
 
 ## 📑 Table of Contents
