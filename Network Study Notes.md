@@ -2,8 +2,6 @@
 
 ---
 
-# Introduction to Networking — Complete Study Notes
-
 ## Table of Contents
 
 - [Category 1: Network Fundamentals](#category-1-network-fundamentals)
