@@ -1,6 +1,5 @@
 > **الهدف من الـ Section ده:**
-> هتفهم إيه هو الـ Operating System وإزاي بيدير الـ Resources، وهتعرف الفرق بين الـ HDD والـ RAM وليه ده مهم جداً في الـ Digital Forensics. كمان هتاخد overview عن الـ Networking الأساسية — إيه الفرق بين الـ LAN والـ WAN، إزاي الـ Router والـ Switch بيشتغلوا، وإيه هو الـ ARP Protocol وإزاي الـ Packets بتتنقل على الشبكة.
-
+> تفهم الـ Operating System وإدارة الـ resources، والفرق بين الـ HDD و RAM، مع basics في الـ Networking زي LAN/WAN، ودور الـ Router وSwitch وARP في نقل الـ packets.
 ---
 
 ## Table of Contents
