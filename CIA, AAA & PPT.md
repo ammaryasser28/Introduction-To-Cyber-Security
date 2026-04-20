@@ -573,7 +573,3 @@ flowchart LR
 > [!NOTE]
 > لو الشركة نفسها مش مشترطة الـ MFA، ومش معملتش Training، ومش وضعت Policy واضحة — وقتها الموظف مش المفروض يتحاسب بشكل كامل. المسؤولية هنا بترجع للـ Management والـ IT Department اللي مخدتش الإجراءات الوقائية المطلوبة.
 
----
-
-*📌 هذه الملاحظات جزء من كورس "Introduction to Cyber Security" — Lecture 01*
-*🔗 للمزيد من المحتوى، تابع الـ Repository على GitHub*
