@@ -11,7 +11,7 @@
 - [The Kernel](#the-kernel)
 - [Operating System Types](#operating-system-types)
 - [HDD vs RAM](#hdd-vs-ram)
-- [Networking Overview](#networking-overview)
+- [Networking Basics](#networking-basics)
 - [LAN and WAN](#lan-and-wan)
 - [Router vs Switch](#router-vs-switch)
 - [ARP Protocol](#arp-protocol)
@@ -21,524 +21,455 @@
 
 ## What is an Operating System?
 
-الـ **Operating System (OS)** هو الـ Software الأساسي اللي بيربط الـ Hardware بالـ User والـ Applications. من غيره، الكمبيوتر مجرد قطع إلكترونية من غير روح.
+الـ **Operating System (OS)** هو الـ Software الأساسي اللي بيشغّل أي جهاز كمبيوتر. تخيّل إنك عندك Hardware — يعني دوائر كهربائية، معالجات، ذاكرة — من غير أي برنامج. الجهاز ده ما هوش غير قطع معدنية وسيليكون بدون أي حياة.
+
+الـ OS هو اللي بيديه الحياة دي، بيحدد القواعد، وبيتحكم في كل حاجة.
 
 ```
-بدون OS:  [ Hardware ] ← لا يوجد تواصل → [ User ]
-مع OS:    [ Hardware ] ←→ [ OS ] ←→ [ User & Applications ]
+بدون OS  →  الجهاز = قطعة حديد
+مع OS    →  الجهاز = نظام متكامل قادر يشتغل
 ```
 
-الـ OS بيلعب 3 أدوار أساسية:
+> [!IMPORTANT]
+> كل Hardware عنده OS — مش بس اللابتوب والموبايل، لكن كمان الـ Routers والـ Printers والـ Smart TVs وحتى الـ ATM Machines.
+
+الـ OS بيقوم بـ **3 أدوار أساسية** في نفس الوقت:
 
 ```mermaid
 graph TD
-    OS[Operating System]
-    OS --> A[Resource Manager]
-    OS --> B[Interface Provider]
-    OS --> C[System Coordinator]
+    OS["Operating System"]
+    OS --> A["Resource Manager"]
+    OS --> B["Interface Provider"]
+    OS --> C["System Coordinator"]
+    A --> A1["CPU / Memory / Storage / I/O"]
+    B --> B1["GUI / CLI"]
+    C --> C1["Files / Security / Network / Monitoring"]
 ```
-
-> **ملاحظة مهمة:** كل جهاز Hardware — سواء كمبيوتر، سيرفر، موبايل، أو راوتر — بيشتغل بـ Operating System. حتى أجهزة الـ IoT عندها نوع من الـ OS.
 
 ---
 
 ## OS As a Resource Manager
 
-الـ OS بيتحكم في كل الـ Resources الموجودة على الجهاز — سواء **Physical** زي الـ RAM والـ CPU، أو **Logical** زي التقسيمات (Partitions).
+الـ OS بيدور في الأساس كـ **Resource Manager** — يعني بيتحكم في كل الموارد الموجودة في الجهاز، سواء كانت:
 
-```mermaid
-graph LR
-    OS[OS - Resource Manager]
-    OS --> CPU[CPU Management]
-    OS --> MEM[Memory Management]
-    OS --> STOR[Storage Management]
-    OS --> IO[I/O Device Management]
+- **Physical Resources**: زي الـ RAM، الـ CPU، الـ Hard Drive، الـ Network Card.
+- **Logical Resources**: زي الـ Logical Partitions على الـ Hard Drive.
 
-    CPU --> CPU1[تحديد أي Process بتشتغل]
-    CPU --> CPU2[تحديد مدة الـ Process]
-    MEM --> MEM1[تخصيص مساحة لكل برنامج]
-    MEM --> MEM2[عزل البرامج عن بعض]
-    MEM --> MEM3[Swap in/out من الـ RAM]
-    STOR --> STOR1[تنظيم الملفات على الـ Drive]
-    STOR --> STOR2[تتبع المساحة الحرة والمستخدمة]
-    IO --> IO1[التحكم في Printer, Keyboard, Network]
-    IO --> IO2[منع Conflicts بين الأجهزة]
-```
+### إزاي بيدير الموارد دي؟
 
-### تفاصيل كل Resource:
+| المورد | إزاي الـ OS بيديره |
+|---|---|
+| **CPU** | بيقرر أنهي Process بتشتغل، ولحد امتى، وبأي ترتيب (Scheduling) |
+| **Memory (RAM)** | بيخصص مساحة لكل برنامج، بيعزلهم عن بعض، وبيعمل Swap لو المساحة وقفت |
+| **Storage (HDD/SSD)** | بينظّم الملفات على الـ Drive، بيتتبع الأماكن الفاضية والمستخدمة |
+| **I/O Devices** | بيتحكم في Printers, Keyboards, Network Cards عشان محدش يعمل Conflict |
 
-| Resource | دور الـ OS |
-|----------|------------|
-| **CPU** | يحدد أي Process تشتغل، ولأد إيه، وبأي ترتيب — ده اللي بيتسمى Scheduling |
-| **Memory (RAM)** | يخصص مساحة لكل برنامج، يعزلهم عن بعض، ويعمل Swap لو المساحة اتملت |
-| **Storage (HDD/SSD)** | ينظم الملفات، يتتبع المساحة الفاضية، ويتحكم في الـ File Access |
-| **I/O Devices** | يدير التواصل مع الـ Keyboard, Mouse, Printer, Network Card ويمنع التعارض |
+> [!NOTE]
+> لو الـ OS مش موجود ومش بيدير الموارد دي، كل البرامج هتتنافس على نفس الـ Resources وهيحصل Crash في ثواني.
 
-> **مثال عملي:** لما بتفتح Chrome و Word في نفس الوقت، الـ OS هو اللي بيوزع الـ CPU والـ RAM عليهم عشان محدش يأكل على التاني.
+### مثال واقعي:
+لما بتفتح Chrome وWord وSpotify في نفس الوقت، الـ OS هو اللي بيوزع الـ CPU Time والـ RAM على كل برنامج منهم بحيث كلهم يشتغلوا مع بعض بشكل سلس.
 
 ---
 
 ## OS As an Interface Provider
 
-الـ OS بيوفر طريقتين للتعامل مع الجهاز:
+الـ OS بيوفر طريقتين للتواصل مع الجهاز:
+
+### 1. Graphical User Interface (GUI)
+ده اللي إحنا شايفينه يومياً — النوافذ، الأيقونات، الأزرار. مصمم عشان المستخدم العادي يقدر يشتغل على الجهاز من غير ما يعرف أي حاجة تقنية.
+
+### 2. Command-Line Interface (CLI)
+ده هو الأداة الحقيقية في إيد الـ IT Professionals والـ Cybersecurity Experts.
+
+**ليه حد يستخدم الـ CLI بدل الـ GUI؟**
 
 ```mermaid
-graph TD
-    OS[OS - Interface Provider]
-    OS --> GUI[Graphical User Interface - GUI]
-    OS --> CLI[Command-Line Interface - CLI]
-
-    GUI --> G1[سهل للمستخدم العادي]
-    GUI --> G2[Windows Desktop, Mac Finder]
-
-    CLI --> C1[قوي جداً للـ IT والـ Security Professionals]
-    CLI --> C2[Terminal, PowerShell, CMD]
-    CLI --> C3[أسرع وأقوى من الـ GUI]
+graph LR
+    CLI["CLI"] --> S["السرعة - أوامر بدل كليكات"]
+    CLI --> A["الأتمتة - Scripting و Automation"]
+    CLI --> P["القوة - وصول لأوامر مش موجودة في الـ GUI"]
+    CLI --> R["Remote Access - تحكم في Servers من بعيد"]
 ```
 
-### GUI vs CLI
-
-| الخاصية | GUI | CLI |
-|---------|-----|-----|
-| **الاستخدام** | مستخدمين عاديين | IT & Cybersecurity Professionals |
-| **السهولة** | سهل جداً | يحتاج تعلم |
-| **القوة** | محدود | قوي جداً وغير محدود |
-| **السرعة** | أبطأ | أسرع بكتير |
-| **الـ Automation** | صعب | سهل جداً (Scripts) |
-
-> **ليه الـ Cybersecurity Professional بيستخدم الـ CLI؟**
-> لأن الـ CLI بيديه تحكم كامل في الجهاز، بيقدر يكتب Scripts تشتغل أوتوماتيك، وبيقدر يوصل لأي جزء في الـ System مش متاح من الـ GUI. في الـ Incident Response مثلاً، كل ثانية بتفرق — والـ CLI أسرع وأدق.
+> [!TIP]
+> في الـ Cybersecurity، الـ CLI مش مجرد خيار — هو ضرورة. معظم الـ Security Tools وكمان أغلب الـ Servers بتشتغل بدون GUI خالص.
 
 ---
 
 ## OS As a System Coordinator
 
-الـ OS مش بس بيدير الـ Resources، هو كمان بيلعب دور الـ Coordinator بين كل أجزاء الـ System:
+غير كونه Resource Manager وInterface Provider، الـ OS بيعمل أيضاً كـ **System Coordinator** — يعني بينسّق بين كل أجزاء النظام:
 
 ```mermaid
 graph TD
-    OS[OS - System Coordinator]
-    OS --> FM[File Management]
-    OS --> SM[Security Management]
-    OS --> NET[Networking]
-    OS --> MON[System Monitoring]
+    SC["System Coordinator"]
+    SC --> FM["File Management"]
+    SC --> SM["Security Management"]
+    SC --> NET["Networking"]
+    SC --> MON["System Monitoring"]
 
-    FM --> FM1[Create, Read, Write, Delete Files]
-    SM --> SM1[User Access Control]
-    SM --> SM2[Permissions and Authentication]
-    NET --> NET1[تواصل الأجهزة مع بعض]
-    NET --> NET2[مشاركة البيانات بأمان]
-    MON --> MON1[تتبع الـ Performance]
-    MON --> MON2[تسجيل الـ Logs]
-    MON --> MON3[اكتشاف الـ Errors]
+    FM --> FM1["إنشاء وقراءة وكتابة وتنظيم الملفات"]
+    SM --> SM1["التحكم في صلاحيات المستخدمين والـ Authentication"]
+    NET --> NET1["تمكين التواصل بين الأجهزة وتبادل البيانات بأمان"]
+    MON --> MON1["تتبع الأداء وتسجيل الأحداث والكشف عن الأخطاء"]
 ```
-
-| الوظيفة | الوصف |
-|---------|-------|
-| **File Management** | إنشاء وقراءة وكتابة وتنظيم الملفات |
-| **Security Management** | التحكم في مين يدخل إيه — Permissions و Authentication |
-| **Networking** | تمكين الأجهزة من التواصل ومشاركة البيانات بأمان |
-| **System Monitoring** | مراقبة الأداء، تسجيل الـ Logs، واكتشاف المشاكل |
 
 ---
 
 ## The Kernel
 
-الـ **Kernel** هو قلب الـ Operating System. هو أول حاجة بتتحمل لما الجهاز بيشتغل، وآخر حاجة بتتقفل لما بيتقفل.
+الـ **Kernel** هو قلب الـ Operating System وأهم جزء فيه.
+
+> [!IMPORTANT]
+> الـ Kernel هو **أول حاجة بتتحمّل** لما الكمبيوتر بيبدأ، و**آخر حاجة بتقفل** لما بتطفيه.
+
+تخيّل الـ OS كبناية كبيرة:
+- الـ **Kernel** هو الأساس (Foundation) اللي كل حاجة تانية بتقوم عليه.
+- الـ **User Programs** هم السكان اللي بيعيشوا فوق.
+- الـ Kernel هو "البريدج" اللي بيوصّل البرامج دي بالـ Hardware بشكل آمن وفعّال.
 
 ```mermaid
 graph TD
-    USER[User Applications]
-    OS_SERVICES[OS Services]
-    KERNEL[Kernel]
-    HARDWARE[Hardware - CPU, RAM, Disk]
+    UP["User Programs / Applications"]
+    K["Kernel"]
+    HW["Hardware (CPU / RAM / Disk / Network)"]
 
-    USER --> OS_SERVICES
-    OS_SERVICES --> KERNEL
-    KERNEL --> HARDWARE
+    UP -->|System Calls| K
+    K -->|Direct Control| HW
 ```
 
-### دور الـ Kernel:
-
-- **الـ Bridge الآمن:** بيوصل برامج الـ User بالـ Hardware من غير ما يديهم وصول مباشر (عشان الأمان)
-- **أول ما يشتغل:** يتحمل مع بداية الـ Boot
-- **آخر ما يتقفل:** بيفضل شغال لحد ما الجهاز يتقفل خالص
-- **بيتحكم في كل حاجة:** كل عملية على الجهاز بتعدي من الـ Kernel
-
-> **تشبيه:** الـ Kernel زي مدير المبنى — أي حد عايز يدخل غرفة (Hardware)، لازم يعدي عليه الأول ويأخد إذن. من غيره، الكل هيدخل على بعض ويحصل فوضى.
+لما بتفتح أي برنامج وبيطلب يكتب في ملف أو يقرأ من الـ Network، البرنامج ده ما بيوصلش الـ Hardware مباشرةً. بيبعت **System Call** للـ Kernel، والـ Kernel هو اللي بينفذ العملية الفعلية.
 
 ---
 
 ## Operating System Types
 
-```mermaid
-graph LR
-    OS_Types[OS Types]
-    OS_Types --> Windows
-    OS_Types --> Linux
-    OS_Types --> MacOS[Mac OS]
-    OS_Types --> Others[Others - Android, iOS, etc.]
+| الـ OS | بيُستخدم في إيه | ملاحظات مهمة |
+|---|---|---|
+| **Windows** | Client Machines (Desktops / Laptops) | الأكثر انتشاراً عند المستخدم العادي |
+| **Linux** | Servers / Web Servers / Supercomputers | مفتوح المصدر، قوي جداً، مرن |
+| **macOS** | Apple Devices | Unix-based، شائع في Design وDev |
 
-    Windows --> W1[Mostly used for Clients]
-    Windows --> W2[Common in corporate environments]
-    Linux --> L1[Mostly used for Servers]
-    Linux --> L2[Web Servers]
-    Linux --> L3[Supercomputers]
-    Linux --> L4[Most powerful systems run Linux]
-```
+### الـ Linux وأهميته في الـ Cybersecurity:
 
-### مقارنة بين الـ Windows والـ Linux
+> [!WARNING]
+> الـ Linux موجود على أقوى الكمبيوترات في العالم (Supercomputers) وعلى معظم الـ Servers على الإنترنت. ده معناه إن أي **Vulnerability** في الـ Linux ممكن تبقى **Catastrophic** وتأثر على ملايين الأنظمة في وقت واحد.
 
-| الخاصية | Windows | Linux |
-|---------|---------|-------|
-| **الاستخدام الأساسي** | Clients & Desktops | Servers & Supercomputers |
-| **الـ Market Share (Servers)** | أقل | الأكثر انتشاراً |
-| **الـ Security** | أكثر استهدافاً | أكثر أماناً بطبيعته |
-| **الـ Cost** | مدفوع | مجاني (في معظمه) |
-| **الـ CLI** | PowerShell / CMD | Bash (أقوى بكتير) |
-| **التخصيص** | محدود | لا نهائي |
-
-> **سؤال مهم:** إيه الـ OS الأكثر استخداماً في العالم ولماذا؟
->
-> **الجواب:** على مستوى الـ Servers والـ Supercomputers — **Linux** هو الملك. أقوى 500 كمبيوتر في العالم بيشتغلوا على Linux. أما على مستوى الـ Desktop للمستخدم العادي، فـ Windows هو الأكثر انتشاراً.
-
-> **تحذير أمني مهم:** الـ Linux Vulnerabilities ممكن تكون **كارثية جداً**، لأن معظم السيرفرات والبنية التحتية الحساسة (Banking، Government، Cloud) بتشتغل على Linux. ثغرة واحدة فيه ممكن تأثر على ملايين الأجهزة في وقت واحد.
+**ليه الـ Linux هو الأكثر استخداماً في الـ Servers؟**
+- مجاني ومفتوح المصدر.
+- مستقر جداً ونادراً بيحتاج Restart.
+- بيشتغل من الـ CLI بدون GUI، فبياخد موارد أقل.
+- المجتمع الكبير خلّى كل المشاكل الأمنية بتتحل بسرعة.
 
 ---
 
 ## HDD vs RAM
 
-ده موضوع مهم جداً للـ **SOC Analyst** وخصوصاً في الـ **Digital Forensics** — لأنك لازم تعرف **فين** و**إزاي** البيانات بتتخزن عشان تعرف تلاقيها وقت التحقيق.
+ده مفهوم أساسي جداً، خصوصاً لو بتشتغل في الـ **Digital Forensics** أو الـ **SOC (Security Operations Center)**.
+
+> [!IMPORTANT]
+> كـ SOC Analyst أو Digital Forensics Expert، لازم تعرف إمتى وفين المعلومة بتتخزن — عشان تقدر تلاقيها وقت التحقيق.
+
+### الفرق بين الـ HDD والـ RAM:
 
 ```mermaid
-graph TD
-    STORAGE[Storage Types]
-    STORAGE --> HDD[HDD - Hard Disk Drive]
-    STORAGE --> RAM[RAM - Random Access Memory]
+graph LR
+    subgraph "Permanent Storage"
+        HDD["Hard Disk Drive (HDD/SSD)"]
+        HDD --> HD1["بيحتفظ بالبيانات حتى لو الكمبيوتر اتقفل"]
+        HDD --> HD2["أبطأ من الـ RAM"]
+        HDD --> HD3["حجم كبير (مئات الـ GB أو أكثر)"]
+    end
 
-    HDD --> H1[Permanent Storage]
-    HDD --> H2[بيفضل فيه البيانات حتى لو الجهاز اتقفل]
-    HDD --> H3[بطيء نسبياً]
-    HDD --> H4[سعة كبيرة جداً]
-
-    RAM --> R1[Temporary Storage]
-    RAM --> R2[بيتمسح لما الجهاز يتقفل]
-    RAM --> R3[سريع جداً]
-    RAM --> R4[سعة أصغر]
+    subgraph "Temporary Storage"
+        RAM["Random Access Memory (RAM)"]
+        RAM --> R1["بتتمسح لما الكمبيوتر بيقفل"]
+        RAM --> R2["أسرع بكتير من الـ HDD"]
+        RAM --> R3["حجم أصغر (8, 16, 32 GB)"]
+    end
 ```
 
-### الفرق الجوهري:
+| الخاصية | HDD / SSD | RAM |
+|---|---|---|
+| نوع التخزين | دائم (Permanent) | مؤقت (Temporary) |
+| السرعة | أبطأ | أسرع بكتير |
+| الحجم | كبير جداً | محدود |
+| بعد إطفاء الجهاز | البيانات تفضل موجودة | البيانات بتتمسح |
+| الغرض | تخزين الملفات والبرامج | تشغيل البرامج النشطة |
 
-| الخاصية | HDD | RAM |
-|---------|-----|-----|
-| **نوع التخزين** | Permanent (دائم) | Temporary (مؤقت) |
-| **البيانات بعد الإغلاق** | بتفضل موجودة | بتتمسح خالص |
-| **السرعة** | أبطأ | أسرع بكتير |
-| **الحجم النموذجي** | 500GB - 10TB | 4GB - 64GB |
-| **الاستخدام** | تخزين الملفات والـ Software | تشغيل البرامج حالياً |
+### إزاي بيشتغلوا مع بعض — مثال عملي:
 
-### مثال عملي: Microsoft Word
+تخيّل إنك عندك **Microsoft Word** على جهازك:
 
 ```mermaid
 sequenceDiagram
-    participant HDD as HDD
-    participant OS as Operating System
-    participant RAM as RAM
-    participant USER as User
+    participant User as المستخدم
+    participant HDD as HDD (التخزين الدائم)
+    participant RAM as RAM (الذاكرة المؤقتة)
 
-    Note over HDD: Word.exe مخزن هنا بشكل دائم
-    USER->>OS: بيضغط على أيقونة Word
-    OS->>HDD: اقرأ ملف Word.exe
-    HDD->>RAM: نسخة من Word.exe اتحملت هنا
-    RAM->>USER: Word فتح وشغال
-    Note over RAM: لو الجهاز اتقفل، النسخة دي بتتمسح
-    Note over HDD: Word.exe لسه موجود هنا
+    User->>HDD: تنزيل وتثبيت Microsoft Word
+    Note over HDD: ملفات الـ Word اتكتبت على الـ HDD
+
+    User->>HDD: الضغط على أيكونة الـ Word لتشغيله
+    HDD->>RAM: نسخة من الـ Word اتحملت في الـ RAM
+    Note over RAM: الـ Word بيشتغل دلوقتي من الـ RAM
+
+    User->>RAM: كتابة Document
+    Note over RAM: التعديلات موجودة في الـ RAM مؤقتاً
+
+    User->>HDD: ضغط Save
+    RAM->>HDD: البيانات اتحفظت على الـ HDD بشكل دائم
 ```
 
-> **ليه ده مهم في الـ Digital Forensics؟**
->
-> لما تعمل تحقيق على جهاز، البيانات الموجودة في الـ RAM (زي الـ Passwords المفتوحة، الـ Encryption Keys، الـ Active Connections) **هتتمسح لما الجهاز يتقفل**. عشان كده، الـ Forensic Analyst لازم يعمل **RAM Dump** قبل أي حاجة تانية — عشان ميضيعش الأدلة اللي في الـ RAM.
+> [!NOTE]
+> مش ممكن أي Software يشتغل من الـ HDD مباشرةً. لازم يتحمّل أولاً في الـ RAM — لأن الـ CPU سريع جداً وما ينفعش يستنى الـ HDD البطيء.
+
+### أهمية المفهوم ده في الـ Forensics:
+لو Malware اشتغل على جهاز ومحدش عمله Save، وبعدين الجهاز اتقفل، المعلومات دي **راحت للأبد** من الـ RAM. عشان كده في الـ Digital Forensics في تقنية اسمها **Live Forensics** بتسمح بتحليل الـ RAM قبل ما الجهاز يقفل.
 
 ---
 
-## Networking Overview
+## Networking Basics
 
-الـ Networking هو الأساس اللي الـ Cybersecurity بيتبنى عليه. مش ممكن تحمي حاجة مش فاهمها.
+الـ Networking هو العمود الفقري للـ Cybersecurity. عشان تقدر تحمي الشبكة، لازم تفهم الأول إزاي بتشتغل.
 
 ```mermaid
 graph TD
-    NET[Networking Basics]
-    NET --> LAN_WAN[LAN and WAN]
-    NET --> DEVICES[Network Devices]
-    NET --> PROTO[Protocols]
-    NET --> DATA[Data Transfer]
-
-    DEVICES --> SWITCH[Switch - Layer 2]
-    DEVICES --> ROUTER[Router - Layer 3]
-    PROTO --> ARP[ARP Protocol]
-    DATA --> PACKETS[Packets]
+    NET["Network"] --> LAN["Local Area Network (LAN)"]
+    NET --> WAN["Wide Area Network (WAN)"]
+    LAN --> SW["Switch"]
+    LAN --> PC["PCs / Servers"]
+    WAN --> RT["Router"]
+    RT --> LAN
 ```
 
 ---
 
 ## LAN and WAN
 
-### LAN - Local Area Network
+### Local Area Network (LAN)
 
-الـ **LAN** هي شبكة محلية بتغطي منطقة صغيرة — زي مكتب، مدرسة، أو طابق في مبنى.
+الـ **LAN** هي شبكة محلية بتغطي مكان محدود — زي مبنى واحد أو مكتب. 
 
-- ممكن تكون من جهاز واحد أو أكتر
-- لما بتقسم الـ LAN لشبكات أصغر، كل جزء بيتسمى **Subnet**
-- الـ Subnets بتتوصل ببعض عشان تكوّن الـ LAN الأكبر
-- معظم كلامنا في الـ Course ده هيكون عن الـ LAN
+الـ LAN ممكن تتكون من شبكة واحدة أو من مجموعة شبكات أصغر متوصّلة مع بعض. الشبكات الأصغر دي بنسميها **Subnets**.
 
 ```mermaid
 graph TD
-    LAN[LAN - Local Area Network]
-    LAN --> S1[Subnet 1 - Floor 1]
-    LAN --> S2[Subnet 2 - Floor 2]
-    LAN --> S3[Subnet 3 - Floor 3]
-
-    S1 --> PC1[PC 1]
-    S1 --> PC2[PC 2]
-    S2 --> PC3[PC 3]
-    S2 --> PC4[PC 4]
-    S3 --> PC5[PC 5]
+    LAN["LAN (Local Area Network)"]
+    LAN --> SN1["Subnet 1 (مثلاً: قسم المحاسبة)"]
+    LAN --> SN2["Subnet 2 (مثلاً: قسم IT)"]
+    LAN --> SN3["Subnet 3 (مثلاً: قسم الإدارة)"]
+    SN1 --> PC1["PC1"] & PC2["PC2"]
+    SN2 --> PC3["PC3"] & PC4["PC4"]
+    SN3 --> PC5["PC5"] & PC6["PC6"]
 ```
 
-### WAN - Wide Area Network
+> [!TIP]
+> تقسيم الـ LAN لـ Subnets بيخلي الشبكة أكثر كفاءة وأسهل في الإدارة والحماية. لو حصل Breach في Subnet واحد، مش بالضرورة يأثر على التاني.
 
-الـ **WAN** بتغطي منطقة جغرافية كبيرة — زي دولة أو قارة.
+### Wide Area Network (WAN)
 
-- الشركات الكبيرة بتستخدمها عشان توصل LANs في أماكن مختلفة ببعض
-- الـ Internet هو أكبر مثال على الـ WAN
+الـ **WAN** هي شبكة بتغطي مسافات كبيرة — زي مدن أو دول. الإنترنت نفسه هو أكبر WAN في العالم.
+
+الشركات الكبيرة بتستخدم الـ WAN عشان توصّل الـ LANs بتاعتها في أماكن جغرافية مختلفة:
 
 ```mermaid
 graph LR
-    HQ[Headquarters - Cairo LAN]
-    BR1[Branch 1 - Alex LAN]
-    BR2[Branch 2 - Dubai LAN]
+    HQ["Headquarters - Cairo LAN"]
+    BR1["Branch 1 - Alex LAN"]
+    BR2["Branch 2 - Dubai LAN"]
+    WAN["WAN (Internet / Leased Lines)"]
 
-    HQ -- WAN Link --> BR1
-    HQ -- WAN Link --> BR2
+    HQ <-->|عبر الـ WAN| WAN
+    BR1 <-->|عبر الـ WAN| WAN
+    BR2 <-->|عبر الـ WAN| WAN
 ```
 
-### LAN vs WAN
-
 | الخاصية | LAN | WAN |
-|---------|-----|-----|
-| **المساحة الجغرافية** | صغيرة (مبنى، حرم جامعي) | كبيرة (دول، قارات) |
-| **السرعة** | عالية جداً | أبطأ نسبياً |
-| **التكلفة** | رخيصة | غالية |
-| **الأمان** | أسهل في التحكم | أصعب وأعقد |
-| **مثال** | شبكة المكتب | الـ Internet |
+|---|---|---|
+| المساحة الجغرافية | محدودة (مبنى / مكتب) | واسعة (مدن / دول) |
+| السرعة | عالية جداً | أبطأ نسبياً |
+| التكلفة | رخيصة | مكلّفة |
+| مثال | شبكة مكتبك | الإنترنت |
 
 ---
 
 ## Router vs Switch
 
+الاتنين أجهزة شبكة لكن ليهم وظائف مختلفة تماماً.
+
 ```mermaid
 graph TD
-    SWITCH[Switch - Layer 2]
-    ROUTER[Router - Layer 3]
+    INT["Internet"]
+    RT["Router"]
+    SW1["Switch 1"]
+    SW2["Switch 2"]
+    PC1["PC 1"]
+    PC2["PC 2"]
+    PC3["PC 3"]
+    PC4["PC 4"]
 
-    SWITCH --> SW1[يوصل الأجهزة ببعض داخل الشبكة]
-    SWITCH --> SW2[يفهم MAC Addresses]
-    SWITCH --> SW3[يوجه الـ Traffic بالـ MAC]
-    SWITCH --> SW4[PCs, Servers, Printers]
-
-    ROUTER --> RO1[يوصل شبكات ببعض]
-    ROUTER --> RO2[يفهم IP Addresses]
-    ROUTER --> RO3[يوجه الـ Traffic بالـ IP]
-    ROUTER --> RO4[يوصل Switches ببعض]
+    INT <--> RT
+    RT <--> SW1
+    RT <--> SW2
+    SW1 <--> PC1
+    SW1 <--> PC2
+    SW2 <--> PC3
+    SW2 <--> PC4
 ```
 
-### الفرق الجوهري:
+### الـ Switch:
+
+- بيوصّل الأجهزة **داخل** نفس الشبكة (PCs, Servers, Printers).
+- بيشتغل على الـ **Layer 2 (Data Link Layer)** من الـ OSI Model.
+- بيفهم الـ **MAC Addresses** ويوجّه الـ Traffic بناءً عليها.
+- بيبعت الـ Data للجهاز الصح داخل الشبكة.
+
+### الـ Router:
+
+- بيوصّل **شبكات مختلفة** مع بعض (LANs مع بعض أو LAN مع الإنترنت).
+- بيشتغل على الـ **Layer 3 (Network Layer)** من الـ OSI Model.
+- بيفهم الـ **IP Addresses** ويوجّه الـ Packets بناءً عليها.
+- هو اللي بيحدد الطريق اللي الـ Data هتاخده لتوصل لوجهتها.
 
 | الخاصية | Switch | Router |
-|---------|--------|--------|
-| **الـ OSI Layer** | Layer 2 (Data Link) | Layer 3 (Network) |
-| **بيفهم إيه** | MAC Addresses | IP Addresses |
-| **بيوصل إيه** | أجهزة داخل نفس الشبكة | شبكات مختلفة ببعض |
-| **الـ Traffic** | داخل الـ LAN | بين الـ LANs أو للـ Internet |
-| **مثال** | سويتش في مكتب | الراوتر في البيت |
+|---|---|---|
+| الوظيفة | يوصّل أجهزة داخل نفس الشبكة | يوصّل شبكات مختلفة |
+| الـ OSI Layer | Layer 2 (Data Link) | Layer 3 (Network) |
+| بيفهم إيه | MAC Addresses | IP Addresses |
+| مثال | جهازك والطابعة في نفس المكتب | جهازك والإنترنت |
 
-```mermaid
-graph LR
-    PC1[PC 1] --> SW[Switch]
-    PC2[PC 2] --> SW
-    PC3[PC 3] --> SW
-    SW --> RT[Router]
-    RT --> INTERNET[Internet / WAN]
-    RT --> SW2[Switch - Branch 2]
-```
-
-> **تشبيه:** الـ Switch زي الـ Receptionist داخل الشركة — بيعرف كل موظف (MAC Address) وبيوصل الرسائل بينهم. أما الـ Router فزي البريد (Post Office) — بيعرف العناوين (IP Addresses) وبيوصل الرسائل لشبكات تانية خارج الشركة.
+> [!NOTE]
+> تذكر القاعدة الأساسية: الـ **Switch** للـ MACs والـ **Router** للـ IPs.
 
 ---
 
 ## ARP Protocol
 
-### إيه هو الـ ARP؟
+### الـ ARP (Address Resolution Protocol) هو إيه؟
 
-الـ **ARP (Address Resolution Protocol)** هو البروتوكول المسؤول عن ترجمة الـ **IP Address** لـ **MAC Address** داخل الـ LAN.
+الـ Data في الشبكة بيتبعت بـ **IP Address** كوجهة، لكن فعلياً الإرسال بيحصل بالـ **MAC Address**. الـ **ARP** هو البروتوكول اللي بيعمل الترجمة دي.
 
-**ليه ده ضروري؟**
+> [!IMPORTANT]
+> الـ Data بتـ Route على أساس الـ IP Address، لكن فعلياً بتتبعت على الـ MAC Address. الـ ARP هو الجسر بين الاتنين.
 
-- الـ Data بتتوجه على أساس الـ IP Address
-- لكن التوصيل الفعلي على الشبكة بيتم على أساس الـ MAC Address
-- إذن لازم نعرف الـ MAC بتاع الجهاز اللي عنده الـ IP ده
+### إزاي الـ ARP بيشتغل خطوة بخطوة:
 
 ```mermaid
 sequenceDiagram
-    participant Sys2 as Sys2
-    participant Network as Network - Broadcast
-    participant Gateway as Net1 Gateway
+    participant Sys2 as Sys2 (المُرسِل)
+    participant Network as Net1 (كل الأجهزة)
+    participant GW as Net1 Gateway (المستقبِل)
 
-    Note over Sys2: عايزة تبعت data للـ Gateway
-    Note over Sys2: تعرف الـ IP بس مش تعرف الـ MAC
-
-    Sys2->>Network: ARP Broadcast - من عنده IP كذا؟ قولي الـ MAC بتاعك
-    Note over Network: كل الأجهزة شافت الـ Broadcast
-    Network->>Gateway: الـ Broadcast وصل
-    Gateway->>Sys2: الـ Reply - أنا صاحب الـ IP ده، والـ MAC بتاعي هو كذا
-    Sys2->>Sys2: حفظ المعلومة في الـ ARP Cache
-    Note over Sys2: دلوقتي تقدر تبعت الـ Data للـ Gateway مباشرة
+    Sys2->>Network: ARP Broadcast: "مين عنده الـ IP ده؟ ابعتلي الـ MAC بتاعك"
+    Note over Network: كل الأجهزة على Net1 شافوا الـ Broadcast
+    Network-->>Sys2: الأجهزة اللي IP بتاعها مختلف بتتجاهل الرسالة
+    GW->>Sys2: "أنا اللي عندي الـ IP ده، MAC بتاعي هو: XX:XX:XX:XX"
+    Note over Sys2: Sys2 حفظ الـ MAC في الـ ARP Cache
 ```
 
-### الـ ARP Cache
+### الـ ARP Cache (ARP Table):
 
-بعد ما الـ Sys2 تاخد الرد، بتحطه في حاجة اسمها **ARP Cache** أو **ARP Table** — وهي موجودة في الـ **RAM**.
+بعد ما الـ Sys2 اتعرف على الـ MAC Address، بيحفظه في **ARP Cache** — وهو عبارة عن جدول مؤقت في الـ RAM بيخزّن العلاقة بين الـ IP والـ MAC.
 
-- الـ ARP Cache بيخزن الـ IP-to-MAC mapping مؤقتاً
-- الجهاز بيرجع ليها قبل ما يبعت ARP Request تانية
-- مدة الحفظ بتختلف من OS لـ OS
-
-```mermaid
-graph LR
-    ARP_REQ[ARP Request Broadcast]
-    ARP_REP[ARP Reply]
-    ARP_CACHE[ARP Cache in RAM]
-
-    ARP_REQ -->|من عنده IP X؟| NET[Network]
-    NET -->|الـ Reply من صاحب الـ IP| ARP_REP
-    ARP_REP --> ARP_CACHE
-    ARP_CACHE -->|للمرة الجاية بيستخدمها مباشرة| DONE[Direct Communication]
-```
-
-### تمرين عملي
-
-**اعرض الـ ARP Cache على جهازك:**
-
-```bash
-# على Windows:
-arp -a
-
-# على Linux/Mac:
-arp -a
-# أو
-ip neigh show
-```
-
-**مثال على الـ Output:**
+الهدف من كده إنه ميسألش نفس السؤال كل مرة، بيفضل يتذكر الإجابة لفترة. المدة دي بتختلف من OS لـ OS.
 
 ```
-Interface: 192.168.1.5
-  Internet Address      Physical Address      Type
-  192.168.1.1           00-1a-2b-3c-4d-5e     dynamic
-  192.168.1.10          00-aa-bb-cc-dd-ee     dynamic
+ARP Cache يشبه دفتر عناوينك في موبايلك:
+- لما بتكلم حد جديد، بتحفظ رقمه.
+- المرة الجاية، مش محتاج تدور عليه تاني.
 ```
 
-> **أهمية الـ ARP في الـ Cybersecurity:**
->
-> الـ ARP Protocol فيه ثغرة معروفة اسمها **ARP Spoofing** أو **ARP Poisoning** — فيها الـ Attacker بيبعت ARP Replies مزيفة عشان يربط الـ IP بتاعه بـ MAC Address تاني، فيخلي كل الـ Traffic يعدي عليه (Man-in-the-Middle Attack). ده بيخليه أحد أخطر الهجمات داخل الـ LAN.
+### Exercise عملي:
+
+> [!TIP]
+> **اعرض الـ ARP Cache على جهازك:**
+> 
+> افتح الـ **Command Prompt (CMD)** واكتب:
+> ```cmd
+> arp -a
+> ```
+> هتشوف جدول بكل الـ IP Addresses والـ MAC Addresses اللي جهازك عارفهم دلوقتي.
 
 ---
 
 ## Packets
 
-### إيه هو الـ Packet؟
+### الـ Data بتتبعت إزاي؟
 
-الـ **Packet** هو الوحدة الأساسية اللي البيانات بتتحرك فيها على الشبكة.
+لما بتبعت أي حاجة على الشبكة — إيميل، صورة، صفحة ويب — الـ Data مش بتتبعت كقطعة واحدة. بتتقسّم لأجزاء صغيرة اسمها **Packets**.
+
+> [!NOTE]
+> إرسال ملف أو صفحة ويب ممكن يحتاج آلاف أو حتى ملايين من الـ Packets في وقت واحد. كل Packet بياخد طريق مختلف وبيتجمّعوا في النهاية عند المستقبل.
+
+### تركيب الـ Packet:
 
 ```mermaid
 graph LR
-    PACKET[Packet]
-    PACKET --> HEADER[Header]
-    PACKET --> PAYLOAD[Payload - Data]
+    PKT["Packet"]
+    PKT --> H["Header"]
+    PKT --> P["Payload (Data)"]
 
-    HEADER --> H1[Source IP Address - مصدر البيانات]
-    HEADER --> H2[Destination IP Address - وجهة البيانات]
-    HEADER --> H3[Protocol Type]
-    HEADER --> H4[Packet Number - رقم الـ Packet في التسلسل]
+    H --> H1["Source IP: جاي منين"]
+    H --> H2["Destination IP: رايح فين"]
+    H --> H3["Protocol: نوع المعلومة"]
+    H --> H4["Sequence Number: ترتيب الـ Packet"]
 
-    PAYLOAD --> P1[البيانات الفعلية]
-    PAYLOAD --> P2[جزء من الملف أو الرسالة]
+    P --> P1["البيانات الفعلية المُرسَلة"]
 ```
 
-### مكونات الـ Packet:
+### شرح أجزاء الـ Packet:
 
-| الجزء | الاسم | الوصف |
-|-------|-------|-------|
-| الجزء الأول | **Header** | معلومات عن الـ Packet — من فين، رايح فين، ونوعه |
-| الجزء التاني | **Payload** | البيانات الفعلية اللي الـ Packet بيحملها |
+| الجزء | الوظيفة |
+|---|---|
+| **Header** | معلومات عن الـ Packet: من أين جاء، وإلى أين يذهب، وما نوع البيانات |
+| **Payload** | البيانات الفعلية — المحتوى اللي إنت عايز تبعته |
 
-### إزاي البيانات بتتبعت؟
+### تشبيه بسيط:
 
-لما بتبعت Email أو ملف أو صفحة ويب، البيانات مش بتتبعت في Packet واحد — بتتقسم لآلاف أو ملايين الـ Packets.
-
-```mermaid
-sequenceDiagram
-    participant SENDER as Sender
-    participant NETWORK as Network
-    participant RECEIVER as Receiver
-
-    Note over SENDER: ملف كبير - 100MB مثلاً
-    SENDER->>NETWORK: Packet 1 - Header + Chunk 1
-    SENDER->>NETWORK: Packet 2 - Header + Chunk 2
-    SENDER->>NETWORK: Packet 3 - Header + Chunk 3
-    Note over NETWORK: الـ Packets ممكن تسلك طرق مختلفة
-    NETWORK->>RECEIVER: Packets بتوصل
-    RECEIVER->>RECEIVER: بيجمع الـ Packets ترتيب صح
-    Note over RECEIVER: الملف اتجمع تاني
+```
+الـ Packet يشبه الطرد البريدي:
+- الـ Header = الظرف اللي عليه عنوان المُرسِل والمستقبِل
+- الـ Payload = الجوّاية (المحتوى الحقيقي)
 ```
 
-> **ملاحظة مهمة:** الـ Packets مش لازم توصل بنفس الترتيب اللي اتبعتت بيه. الـ Receiver هو اللي بيرتبها صح في الآخر باستخدام الـ Packet Numbers الموجودة في الـ Header.
-
-### ليه الـ Packets مهمة في الـ Cybersecurity؟
-
-الـ **Packet Analysis** أو **Packet Sniffing** هو أحد أهم مهارات الـ SOC Analyst. بنستخدم Tools زي **Wireshark** عشان:
-
-- نشوف إيه اللي بيتبعت على الشبكة
-- نكتشف الـ Suspicious Traffic
-- نحلل الهجمات بعد ما تحصل (Post-Incident Analysis)
-- نفهم سلوك الـ Malware على الشبكة
-
----
-
-## ملخص عام للـ Lecture
+### ليه التقسيم لـ Packets؟
 
 ```mermaid
 graph TD
-    L2[Lecture 2 - OS and Networking]
-
-    L2 --> OS[Operating System]
-    L2 --> NET[Networking]
-
-    OS --> RM[Resource Manager - CPU, RAM, Storage, I/O]
-    OS --> IP[Interface Provider - GUI and CLI]
-    OS --> SC[System Coordinator - Files, Security, Monitoring]
-    OS --> KR[Kernel - قلب الـ OS]
-    OS --> TYPES[OS Types - Windows vs Linux]
-    OS --> MEM[HDD vs RAM - Permanent vs Temporary]
-
-    NET --> LNWN[LAN vs WAN]
-    NET --> RSW[Router vs Switch - Layer 3 vs Layer 2]
-    NET --> ARP[ARP Protocol - IP to MAC Resolution]
-    NET --> PKT[Packets - Header and Payload]
+    WHY["ليه نقسّم البيانات لـ Packets؟"]
+    WHY --> E["الكفاءة - لو Packet ضاع، نعيد إرساله بس هو"]
+    WHY --> S["المشاركة - أجهزة كتير تستخدم الشبكة في نفس الوقت"]
+    WHY --> R["التوجيه - كل Packet ياخد أفضل طريق متاح"]
 ```
 
+> [!TIP]
+> في الـ Cybersecurity، تحليل الـ Packets (اسمه **Packet Analysis** أو **Packet Sniffing**) هو أداة قوية جداً للـ Defenders عشان يشوفوا إيه اللي بيحصل على الشبكة، ويكشفوا الـ Attacks. الأداة الأشهر لعمل ده هي **Wireshark**.
 
 ---
 
-*Lecture 2 — Introduction to Cyber Security Course*
+## Summary
+
+```mermaid
+mindmap
+  root["Lecture 2 - Core Concepts"]
+    OS
+      Resource Manager
+      Interface Provider
+      System Coordinator
+      Kernel
+    OS Types
+      Windows - Clients
+      Linux - Servers and Supercomputers
+    Storage
+      HDD - Permanent
+      RAM - Temporary
+    Networking
+      LAN - Local
+      WAN - Wide Area
+      Switch - Layer 2 - MAC
+      Router - Layer 3 - IP
+      ARP Protocol
+      Packets
+```
