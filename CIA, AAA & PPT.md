@@ -1,6 +1,4 @@
-# 🔐 The Foundation of Cyber Security: CIA, AAA & PPT
 
----
 > **الهدف من الـ Section ده:**
 > تفهم الـ fundamentals قبل ما تأمّن أي system — تبدأ رحلتك في Cybersecurity، وتستوعب إن الـ Security مش بس technology بل mindset وثقافة وسياسة.
 ---
