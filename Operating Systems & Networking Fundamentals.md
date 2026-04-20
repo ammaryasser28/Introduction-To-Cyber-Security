@@ -453,7 +453,7 @@ graph TD
 
 ```mermaid
 mindmap
-  root["Lecture 2 - Core Concepts"]
+  root["Core Concepts"]
     OS
       Resource Manager
       Interface Provider
