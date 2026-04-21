@@ -1,4 +1,4 @@
-> الهدف من الـ Lecture ده: هتفهم إيه هو الـ Cryptography وإزاي بيحمي بياناتك، وهتعرف الفرق بين الـ Encryption والـ Hashing والـ Steganography، وإزاي الـ Digital Signatures والـ Certificates بتحميك من الـ MITM Attacks.
+> الهدف من الـ Section ده: هتفهم إيه هو الـ Cryptography وإزاي بيحمي بياناتك، وهتعرف الفرق بين الـ Encryption والـ Hashing والـ Steganography، وإزاي الـ Digital Signatures والـ Certificates بتحميك من الـ MITM Attacks.
 
 ## Table of Contents
 
