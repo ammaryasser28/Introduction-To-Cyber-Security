@@ -40,7 +40,7 @@
 | **Unaltered** | محدش عدّل فيها في الطريق |
 
 > [!NOTE]
-> الجملة اللي ظهرت في الـ Lecture: `Ygneqog vq Eadgt Ugewtkva Htkgpfu` — دي مش كلام فاضي، دي جملة متشفرة بالـ **Caesar Cipher** بـ Shift قيمته 2. لو فككت الشفرة هتلاقي: **"Welcome to Cyber Security Friends"** — ده بيوضح إن لو معرفتش الـ Algorithm أو الـ Key، مش هتقدر تفك الشفرة.
+> الجملةـ: `Ygneqog vq Eadgt Ugewtkva Htkgpfu` — دي مش كلام فاضي، دي جملة متشفرة بالـ **Caesar Cipher** بـ Shift قيمته 2. لو فككت الشفرة هتلاقي: **"Welcome to Cyber Security Friends"** — ده بيوضح إن لو معرفتش الـ Algorithm أو الـ Key، مش هتقدر تفك الشفرة.
 
 ---
 
