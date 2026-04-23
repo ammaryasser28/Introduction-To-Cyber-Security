@@ -1,0 +1,951 @@
+> **الهدف من الـ Lectures دول:** هتفهم إزاي الـ Attackers بيهاجموا الـ Networks والـ Systems من كل الاتجاهات — سواء عن طريق الـ Wireless، أو الـ Social Engineering، أو الـ Malware، أو حتى بيستغلوا Protocols أساسية زي ARP وDNS. وهتعرف كـ Defender تتعامل مع الـ Threats دي وتفهم ازاي تشتغل عشان تقدر تكتشفها.
+
+---
+
+# Network Attacks, Threats & Malware — Lectures 9 & 10
+
+---
+
+## Table of Contents
+
+- [Category 1: VPN \& Secure Tunneling](#category-1-vpn--secure-tunneling)
+  - [VPN — Virtual Private Network](#vpn--virtual-private-network)
+- [Category 2: Wireless Security](#category-2-wireless-security)
+  - [Wireless Attacks](#wireless-attacks)
+  - [Rogue Access Points](#rogue-access-points)
+- [Category 3: IoT Security](#category-3-iot-security)
+  - [IoT Devices and Their Security](#iot-devices-and-their-security)
+- [Category 4: Social Engineering \& Deception Attacks](#category-4-social-engineering--deception-attacks)
+  - [Social Engineering](#social-engineering)
+  - [Phishing \& Spear Phishing](#phishing--spear-phishing)
+  - [Watering Hole Attack](#watering-hole-attack)
+- [Category 5: Network-Level Attacks](#category-5-network-level-attacks)
+  - [Spoofing](#spoofing)
+  - [ARP Cache Poisoning](#arp-cache-poisoning)
+  - [SYN Flood Attack](#syn-flood-attack)
+  - [Buffer Overflow](#buffer-overflow)
+- [Category 6: DNS Attacks](#category-6-dns-attacks)
+  - [DNS Cache Poisoning](#dns-cache-poisoning)
+  - [DNS Hijacking (Domain Hijacking)](#dns-hijacking-domain-hijacking)
+- [Category 7: Malware \& Threats](#category-7-malware--threats)
+  - [Keyloggers](#keyloggers)
+  - [Types of Malware](#types-of-malware)
+- [Category 8: Defense \& Detection](#category-8-defense--detection)
+  - [Antivirus Solutions](#antivirus-solutions)
+- [Summary](#summary)
+
+---
+
+## Category 1: VPN & Secure Tunneling
+
+### VPN — Virtual Private Network
+
+الـ VPN هو من أهم الـ Tools اللي بتُستخدم في الـ Cybersecurity عشان تأمن الاتصال بين شبكتين عبر الـ Internet.
+
+#### ما هو الـ VPN؟
+
+الـ **VPN (Virtual Private Network)** هو تقنية بتخلي جهازين أو شبكتين منفصلتين يتواصلوا مع بعض كأنهم على نفس الـ Private Network — حتى لو الاتصال بينهم بيعدي على الـ Internet العام.
+
+```
+[Office A] ──── Encrypted Tunnel (IPSec) ──── [Office B]
+               over Public Internet
+```
+
+#### ليه الـ VPN مهم؟
+
+قبل الـ VPN، الشركات كانت بتستخدم **Leased Lines** — يعني خطوط مخصصة بتربط الفروع ببعض مباشرةً. المشكلة إن:
+
+- الـ Leased Lines كانت **بتاخد شهور عشان تتركب**
+- وكانت **تكلف آلاف الدولارات شهرياً**
+
+الـ VPN حل المشكلة دي بتكلفة أقل بكتير باستخدام الـ Internet الموجود أصلاً.
+
+> [!IMPORTANT]
+> الـ VPN مش بس للاتصال بشبكة خارجية. كتير من المنظمات بتستخدمه **داخل شبكتها الداخلية نفسها** عشان تضمن الـ Confidentiality والـ Integrity للمعلومات الحساسة جداً بين أجزاء الشبكة المختلفة.
+
+#### إزاي بيشتغل الـ VPN؟
+
+الـ VPN بيستخدم بروتوكول **IPSec** عشان يعمل تشفير للـ Traffic. الـ IPSec بيشتغل على الـ **Layer 3 (Network Layer)**، يعني كل الـ Traffic اللي بيعدي من خلاله بيتشفر بالكامل.
+
+```mermaid
+sequenceDiagram
+    participant UserPC
+    participant VPN_Client
+    participant Internet
+    participant VPN_Server
+    participant TargetNetwork
+
+    UserPC->>VPN_Client: Send Data
+    VPN_Client->>Internet: Encrypted Packet (IPSec Tunnel)
+    Internet->>VPN_Server: Encrypted Packet
+    VPN_Server->>TargetNetwork: Decrypted Data
+    TargetNetwork-->>VPN_Server: Response
+    VPN_Server-->>Internet: Encrypted Response
+    Internet-->>VPN_Client: Encrypted Response
+    VPN_Client-->>UserPC: Decrypted Response
+```
+
+#### الـ VPN Tunnel
+
+بعد ما الـ VPN Connection بتتأسس، **أي Application** زي الـ Email أو الـ Web Browser أو الـ FTP ممكن يستخدم الـ Tunnel دا كأن الكمبيوتر متوصل مباشرةً بالـ Local Network.
+
+> [!TIP]
+> لما تيجي تاخد الـ Sniffing على الـ Network وحد مستخدم VPN، مش هتقدر تشوف أي Data حقيقية — كل اللي هتشوفه Encrypted Traffic مش مفيد.
+
+#### الـ VPN في الـ Wireless Networks
+
+> [!NOTE]
+> لما البيانات توصل للـ Access Point، بتتفك تشفيرها وبتتبعت على الـ Wire بـ **Plaintext**. عشان كده، الحل الأمثل هو استخدام VPN Tunnel بين الـ Access Point والشبكة المقصودة عشان يضمن **End-to-End Encryption**.
+
+#### مقارنة: Leased Line vs VPN
+
+| المعيار | Leased Line | VPN |
+|---|---|---|
+| التكلفة | آلاف الدولارات شهرياً | أقل بكتير |
+| وقت الإعداد | شهور | دقائق |
+| الأمان | عالي (مخصص) | عالي (مشفر) |
+| المرونة | محدودة | مرنة جداً |
+| الاعتماد على الإنترنت | لا | نعم |
+
+---
+
+## Category 2: Wireless Security
+
+### Wireless Attacks
+
+الـ Wireless Networks بطبيعتها أصعب في التأمين من الـ Wired Networks — لأن الـ Air مش ممكن تتحكم فيه.
+
+#### معايير الـ WiFi
+
+| الاسم القديم | الاسم الجديد |
+|---|---|
+| 802.11n | Wi-Fi 4 |
+| 802.11ac | Wi-Fi 5 |
+| 802.11ax | Wi-Fi 6 |
+
+#### مشكلة التشفير في الـ Wireless
+
+الـ WiFi بيستخدم Encryption عشان الـ Packets بتطير في الهوا وكلها ممكن يشوفها أي حد. المعايير الأمنية الموجودة:
+
+| المعيار | الحالة | السبب |
+|---|---|---|
+| **WEP** | Deprecated / مكسور | الـ 40-bit Key قابل للتوقع بسبب ضعف الـ Randomness |
+| **WPA** | Deprecated / مكسور | نفس مشكلة WEP بس بـ 128-bit (بياخد وقت أكثر بس نفس المشكلة) |
+| **WPA2** | مقبول | تشفير أقوى، بيحتاج Processing أعلى |
+| **WPA3** | الأفضل حالياً | الأحدث والأكثر أماناً |
+
+> [!WARNING]
+> للأسف لحد دلوقتي في بيوتنا كتير من الـ Routers بتيجي بـ WEP أو WPA ضعيف! السبب إن الـ Hardware الرخيص اللي بتبعته الـ ISPs مش بيقدر يتحمل تكلفة الـ Processing للـ WPA2/WPA3. وده خطر حقيقي.
+
+#### المشاكل الأساسية في الـ Wireless
+
+**1. الـ Management Frames مش ممكن تتشفر**
+
+في الـ Wireless، في معلومات معينة لازم تبقى Unencrypted عشان الـ WiFi يشتغل — زي الـ Management Frames.
+
+> [!IMPORTANT]
+> الـ MAC Address مش ممكن يتشفر. لو اتشفر، الـ WiFi هيبطل يشتغل. كل Device بيحتاج يشوف الـ Destination MAC Address عشان يعرف هل الـ Packet ده ليه أم لا.
+
+**2. الـ Broadcast Nature**
+
+في الـ Wireless، **كل الأجهزة بتشوف كل الـ Packets**. كل Device بيعمل كده:
+
+```mermaid
+flowchart TD
+    A[Receive Packet] --> B{Is Destination MAC == My MAC?}
+    B -- Yes --> C[Process the Packet]
+    B -- No --> D[Drop the Packet]
+```
+
+**3. الـ Beaconing Frames والـ SSID**
+
+الـ Access Point بيبعت **Beaconing Frames** كل بضع ثواني. الـ Frame دي بتحتوي على الـ **SSID (Service Set Identifier)** — اسم الـ WiFi Network — وهي مش ممكن تتشفر لأنها بتُستخدم لتأسيس الاتصال.
+
+> [!NOTE]
+> زمان كان المستشار يقول "اعمل Hide للـ SSID عشان الـ Attackers ميشوفوكش." دلوقتي ده فكرة غلط. لأن لما حد بيحاول يكونيكت بالـ Network، الـ SSID بيتبعت في الـ Connection Process. يعني الـ Attacker بيستنى حد يتكونيكت وبيشوفه. إنت بس بتعمل الموضوع أصعب شوية على حسابك انت كمان — مش أصعب على الـ Attacker.
+
+**4. الـ MAC Filtering**
+
+ممكن تعمل Whitelist للـ MAC Addresses المسموح ليها تتكونيكت — بس:
+
+> [!WARNING]
+> الـ MAC Addresses مش متشفرة، يعني أي Attacker يقدر **يشوف** MAC Address مسموح ليه وبعدين **يـ Spoof** نفس الـ MAC عشان يدخل. الحل ده بيوفر حماية وهمية.
+
+#### الـ Flow الكامل للـ Wireless Attack
+
+```mermaid
+flowchart LR
+    A[Attacker في الهوا] --> B[يشوف كل الـ Packets]
+    B --> C[يقرا الـ MAC Addresses غير المشفرة]
+    B --> D[يشوف الـ SSID من الـ Beaconing Frames]
+    C --> E[يعمل MAC Spoofing]
+    D --> F[يعرف اسم الـ Network]
+    E --> G[يتكونيكت بالـ Network]
+    F --> G
+```
+
+---
+
+### Rogue Access Points
+
+**الـ Rogue Access Point** هو الـ Attacker نفسه بيعمل نفسه WiFi مجاني عشان يخلي الناس يتكونيكتوا بيه.
+
+#### إزاي بيشتغل الـ Attack؟
+
+```mermaid
+flowchart TD
+    A[Attacker ينشئ Fake WiFi - Free Hotspot] --> B[Victim يتكونيكت بالـ Fake AP]
+    B --> C[كل الـ Traffic بتعدي على جهاز الـ Attacker]
+    C --> D[Attacker يعمل Forward للـ Traffic للـ Internet]
+    D --> E[Attacker في Position الـ Man-in-the-Middle]
+    E --> F[يقدر يشوف كل البيانات غير المشفرة]
+    E --> G[يقدر يعدل الـ Traffic]
+```
+
+> [!WARNING]
+> أي WiFi "مجاني" في أماكن عامة ممكن يكون Rogue AP. دايماً تأكد من الـ Network اللي بتتكونيكت بيه قبل ما تدخل أي Data حساسة.
+
+---
+
+## Category 3: IoT Security
+
+### IoT Devices and Their Security
+
+#### حجم المشكلة
+
+- في أكتر من **75 Billion IoT Device** حول العالم
+- أمثلة: Smart Speakers، Smart TVs، Garage Sensors، Security Cameras، وغيرهم
+
+#### ليه الـ IoT Devices خطيرة؟
+
+```mermaid
+mindmap
+  root(IoT Security Problems)
+    No Unified Standards
+      Only proposals exist
+      Every vendor does it differently
+    Weak Hardware
+      Minimal specs to cut costs
+      Cannot support strong encryption
+      Limited Bluetooth security
+    No Updates
+      Devices abandoned after sale
+      Vulnerabilities never patched
+      Attacker can exploit forever
+    Linux Vulnerabilities
+      80 percent run Linux
+      ShellShock affected all of them
+      One exploit hits billions
+```
+
+> [!IMPORTANT]
+> في ثغرة اسمها **ShellShock** أثرت على الـ Bash Shell في الـ Linux. المشكلة إن **80% من الـ 75 Billion IoT Device بتشغل Linux** — يعني كلهم كانوا Vulnerable لهجوم واحد.
+
+#### ليه الشركات مش بتصلح المشكلة؟
+
+الأولوية عند الشركات هي **البيع بأعلى ربح** — مش الأمان. ومحدش بيجبرهم على معايير أمنية محددة. يعني:
+
+- بيستخدموا أضعف Hardware بتكلفة أقل
+- مش بيخططوا لأي Future Updates
+- الـ Device لما بيتباع، الشركة خلصت مسؤوليتها
+
+> [!TIP]
+> كـ Defender، لازم تعامل أي IoT Device على الشبكة كـ **Untrusted Device**. ضيفها على Network منفصلة (IoT VLAN) وقيّد وصولها للـ Network الأساسية.
+
+---
+
+## Category 4: Social Engineering & Deception Attacks
+
+### Social Engineering
+
+#### ما هو الـ Social Engineering؟
+
+الـ **Social Engineering** هو استغلال الطبيعة البشرية بدل الثغرات التقنية. الـ Attacker بيقنع الضحية إنها هي نفسها تسلمه المعلومات أو الوصول.
+
+> [!IMPORTANT]
+> ده أخطر نوع من الـ Attacks. لأن لو نجح، كل الـ Security Devices اللي اتصرف فيها ملايين هتبقى بلا فايدة — الضحية بنفسها سلمت الـ Attacker كل معلومة عشان يدخل النظام بصورة شرعية.
+
+#### ليه بنقع فيه؟
+
+الـ Attackers بيستغلوا الطبيعة البشرية:
+- الثقة والمساعدة
+- الخوف والضغط
+- الفضول
+- الطمع
+
+#### إزاي تتحمى؟
+
+مفيش Technology تحميك من الـ Social Engineering. الحل الوحيد هو:
+
+> [!TIP]
+> **Training + Awareness**. لازم تدرب موظفيك بشكل مستمر وترفع الـ Security Awareness. Simulation Phishing Attacks بتساعد جداً عشان الناس تاخد بالها من الـ Tricks دي.
+
+---
+
+### Phishing & Spear Phishing
+
+#### الفرق بين Phishing و Spear Phishing
+
+| المعيار | Phishing | Spear Phishing |
+|---|---|---|
+| الهدف | الجميع (Broadcast) | شخص محدد أو مؤسسة |
+| مستوى التخصيص | منخفض | عالي جداً |
+| مستوى البحث | لا يوجد | بحث مكثف عن الهدف |
+| معدل النجاح | أقل | أعلى بكتير |
+| الخطورة | متوسطة | عالية جداً |
+
+#### طرق الـ Phishing Attack
+
+**1. Fake Login Page**
+صفحة بتتظاهر إنها موقع حقيقي (بنك، Gmail، Facebook) عشان تسرق الـ Username والـ Password.
+
+**2. Malicious Link**
+لينك لما تضغط عليه بينزل Malware على جهازك.
+
+```mermaid
+flowchart TD
+    A[Attacker يبعت Email أو رسالة] --> B{نوع الـ Attack؟}
+    B --> C[Fake Login Page]
+    B --> D[Malicious Link]
+    C --> E[Victim يدخل Username وPassword]
+    E --> F[Attacker يسرق الـ Credentials]
+    D --> G[Victim يضغط على الـ Link]
+    G --> H[Malware بينزل على الجهاز]
+    H --> I[Attacker يتحكم في الجهاز]
+```
+
+> [!WARNING]
+> في Tools مجانية على الإنترنت بتعمل Phishing Pages جاهزة في دقائق. الـ Attacker مش محتاج خبرة كبيرة عشان ينفذ الـ Attack.
+
+---
+
+### Watering Hole Attack
+
+#### ما هي الـ Watering Hole Attack؟
+
+اسمها مأخوذ من طريقة الصيد في الطبيعة — الأسد مش بيجري ورا الفريسة، هو بيستنى عند حفرة الماء اللي الفريسة هتيجي ليها حتماً.
+
+```mermaid
+flowchart TD
+    A[Attacker يدرس سلوك الموظفين] --> B[يحدد موقع خارجي بيزوروه كتير]
+    B --> C[يخترق الموقع ده]
+    C --> D[يزرع Malware على الموقع]
+    D --> E[موظف يزور الموقع]
+    E --> F[Malware بيتنزل على جهاز الموظف]
+    F --> G[Attacker يكسب Remote Access]
+    G --> H[يخترق شبكة المنظمة من الداخل]
+```
+
+> [!NOTE]
+> الـ Attack دي صعبة الاكتشاف لأن الموظف بيزور موقع شرعي معروف وموثوق — الموقع نفسه اتاخد. كـ SOC Analyst، لازم تراقب الـ Web Requests وتاخد بالك من أي Malicious Downloads حتى من مواقع موثوقة.
+
+---
+
+## Category 5: Network-Level Attacks
+
+### Spoofing
+
+#### ما هو الـ Spoofing؟
+
+الـ **Spoofing** هو استخدام معلومات مزيفة لأغراض ضارة. بالعربي: الـ Attacker بيتظاهر بإنه حد تاني.
+
+| نوع الـ Spoofing | الوصف |
+|---|---|
+| **IP Spoofing** | وضع أي IP Address في الـ Packet بغض النظر عن المصدر الحقيقي |
+| **MAC Spoofing** | تغيير الـ MAC Address لتجاوز الـ MAC Filtering |
+| **Email Spoofing** | تغيير الـ Sender في الـ Email عشان يبان كأنه من حد تاني |
+
+---
+
+### ARP Cache Poisoning
+
+#### فهم الـ ARP الطبيعي أولاً
+
+الـ **ARP (Address Resolution Protocol)** هو البروتوكول المسؤول عن تحويل الـ **IP Address** لـ **MAC Address** على الـ Local Network.
+
+كل Device عنده **ARP Cache** — جدول بيحفظ فيه الـ Mapping ده:
+
+```
+IP Address      MAC Address
+192.168.1.1     AA:BB:CC:DD:EE:FF
+192.168.1.5     11:22:33:44:55:66
+```
+
+```bash
+# عشان تشوف الـ ARP Cache على جهازك
+arp -a
+```
+
+#### إزاي بيشتغل الـ ARP الطبيعي؟
+
+```mermaid
+sequenceDiagram
+    participant A as Device A (192.168.1.4)
+    participant Network as Network (Broadcast)
+    participant B as Device B (192.168.1.5)
+
+    A->>Network: ARP Request (Broadcast): "Who has 192.168.1.5?"
+    Network->>B: Delivers to all devices
+    B->>A: ARP Reply: "I have it! My MAC is 11:22:33:44:55:66"
+    A->>A: Updates ARP Cache
+    B->>B: Updates ARP Cache
+```
+
+#### الـ Unsolicited ARP (Gratuitous ARP)
+
+في نوع ARP اسمه **Unsolicited ARP** بيتبعت من غير ما حد يطلبه. استخداماته الشرعية:
+
+- لما Router بيشتغل، بيعلن عن نفسه: "أنا هنا وعندي الـ IP ده"
+- لما MAC Address بيتغير، بيعلن التحديث الجديد
+- تحديث الـ ARP Tables في الشبكة
+
+> [!IMPORTANT]
+> الـ Feature دي مفيش فيها Authentication. أي Device يقدر يبعت Unsolicited ARP بأي معلومات حتى لو كاذبة — وكل الأجهزة في الشبكة هتصدق وتحدث الـ ARP Cache بتاعتها.
+
+#### إزاي بيشتغل الـ ARP Cache Poisoning Attack؟
+
+```mermaid
+sequenceDiagram
+    participant Victims as All Victims on Network
+    participant Attacker as Attacker
+    participant Gateway as Real Gateway (192.168.1.1)
+
+    Attacker->>Victims: Unsolicited ARP: "192.168.1.1 is at Attacker-MAC"
+    Victims->>Victims: Update ARP Cache (now poisoned!)
+    
+    Note over Victims: ARP Cache now shows WRONG mapping
+
+    Victims->>Attacker: Traffic destined for Internet (using Attacker-MAC)
+    Attacker->>Gateway: Forward traffic with Real Gateway MAC
+    Gateway->>Attacker: Response back to Attacker
+    Attacker->>Victims: Forward response to Victims
+    
+    Note over Attacker: Full Man-in-the-Middle position
+```
+
+#### الـ Attack خطوة بخطوة
+
+1. الـ Attacker يبعت **Unsolicited ARP** يقول "أنا الـ Gateway"
+2. كل الأجهزة تصدق وتحدث الـ ARP Cache بتاعتها
+3. كل الـ Traffic المتجه للإنترنت بييجي للـ Attacker
+4. الـ Attacker يستخدم Tool زي **Ettercap** عشان:
+   - يشوف كل الـ Traffic (Man-in-the-Middle)
+   - يعدل في الـ MAC Addresses ويعمل Forward للـ Gateway الحقيقي
+5. الـ Gateway يرد، والـ Attacker يعمل Forward للضحية
+
+> [!TIP]
+> عشان تكتشف الـ ARP Poisoning، ابحث عن **Duplicate IP Addresses** في الـ ARP Cache — لو IP واحد عنده MAC Addresses مختلفة، في حاجة غلط. أو استخدم Tools زي **XArp** للمراقبة.
+
+---
+
+### SYN Flood Attack
+
+#### مراجعة سريعة: الـ TCP 3-Way Handshake
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+
+    Client->>Server: SYN
+    Server->>Client: SYN-ACK
+    Client->>Server: ACK
+    Note over Client,Server: Connection Established
+```
+
+#### إزاي بيشتغل الـ SYN Flood؟
+
+الـ Server لما بيستقبل SYN، بيعمل التالي:
+- **يحجز Memory** للـ Session دي
+- **يبعت SYN-ACK** للـ Client
+- **يستنى الـ ACK** لمدة ~30 ثانية
+
+الـ Attacker بيستغل ده:
+
+```mermaid
+flowchart TD
+    A[Attacker يأمر Botnet بكامله] --> B[كل Zombie يبعت SYN Packets بسرعة قصوى]
+    B --> C[كل Packet فيها IP غير موجود Unassigned IP]
+    C --> D[Server يستقبل ملايين SYN]
+    D --> E[Server يحجز Memory لكل SYN]
+    E --> F[Server يبعت SYN-ACK لـ IPs وهمية]
+    F --> G[مفيش ACK بييجي لأن الـ IP مش موجود]
+    G --> H[Server يستنى 30 ثانية لكل Session]
+    H --> I[Memory الـ Server تمتلئ]
+    I --> J[Server يرفض الـ Connections الجديدة - DoS]
+```
+
+> [!IMPORTANT]
+> الـ Attacker مش محتاج مليون جهاز عشان يعمل مليون Session. كل جهاز من الـ Botnet بيبعت Packets بأسرع ما يقدر — كل Packet بـ IP وهمي مختلف.
+
+#### الحلول
+
+| الحل | الوصف | الفعالية |
+|---|---|---|
+| تقليل الـ SYN Timeout | تقليل وقت الانتظار من 30 ثانية | مفيد نسبياً، بس لو الـ Attack قوي مش كافي |
+| SYN Cookies | تقنية بتتجنب حجز Memory قبل الـ ACK | أفضل |
+| Firewall مع SYN Proxy | الـ Firewall بيكمل الـ Handshake عوضاً عن الـ Server | الأفضل، بس غالي |
+
+---
+
+### Buffer Overflow
+
+#### ما هو الـ Buffer؟
+
+الـ **Buffer** هو ببساطة قطعة من الـ Memory بيستخدمها البرنامج عشان يحفظ فيها Data مؤقتاً — زي Array أو String.
+
+#### ما هو الـ Buffer Overflow؟
+
+لما بتحاول تحط في الـ Buffer بيانات أكتر من اللي صُمم عشانها، البيانات الزيادة بتـ "Overflow" وتكتب فوق الـ Memory المجاورة. ده هو الـ **Buffer Overflow**.
+
+> [!NOTE]
+> الـ Buffer Overflow شائع جداً في لغتي **C** و **C++** لأنهم **مش بيعملوا Automatic Bounds Checking**. إنت كـ Developer مسؤول إنك تتأكد إن البيانات مش بتتعدى حجم الـ Buffer.
+> 
+> ```c
+> char buffer[10];  // حجز 10 bytes بس
+> // لو كتبت 50 byte هنا، C مش هتوقفك!
+> ```
+
+#### الـ Memory Layout وإزاي بيشتغل الـ Attack
+
+```mermaid
+flowchart TD
+    subgraph Normal["Normal Execution"]
+        N1[Instruction A] --> N2[Instruction B]
+        N2 --> N3[Instruction C: Go to Buffer Q]
+        N3 --> N4[Buffer Q: Process user input]
+        N4 --> N5[Return Pointer: Go back to D]
+        N5 --> N6[Instruction D: Continue]
+    end
+
+    subgraph Attack["Buffer Overflow Attack"]
+        A1[Instruction A] --> A2[Instruction B]
+        A2 --> A3[Instruction C: Go to Buffer Q]
+        A3 --> A4[Buffer Q: Attacker fills with NOP sled]
+        A4 --> A5[Overflow overwrites Return Pointer]
+        A5 --> A6[New Return Pointer points to Malicious Code]
+        A6 --> A7[Malicious Code Executes]
+        A7 --> A8[Return to D to avoid suspicion]
+    end
+```
+
+#### ليه الـ Attacker محتاج يكتب فوق الـ Return Address؟
+
+> [!IMPORTANT]
+> الـ Processor مش بيشغل Code تلقائياً لمجرد إنه موجود في الـ Memory. الـ Code بس بتتنفذ لما الـ CPU's Instruction Pointer (IP/EIP/RIP) بيقفز لعنوانها. يعني حتى لو الـ Attacker حط Shellcode في الـ Memory، هيفضل مجرد Bytes مش بتتنفذ — لازم يحول مسار الـ Execution Flow ليها.
+
+#### الـ NOP Sled
+
+الـ **NOP (No Operation)** هو Instruction شرعي بيقول للـ Processor "معملش حاجة، كمّل للـ Instruction الجاية". الـ Attacker بيملي الـ Buffer بـ NOPs عشان:
+
+- يوسع مساحة الـ "Landing Zone" للـ Jump
+- يضمن وصول الـ Execution للـ Malicious Code في النهاية
+
+```
+[NOP][NOP][NOP]...[NOP][NOP][Shellcode][Return to D]
+       ← NOP Sled →
+```
+
+> [!TIP]
+> الحماية من الـ Buffer Overflow بتتم بعدة طرق: **Input Validation** (التحقق من البيانات المدخلة)، **ASLR (Address Space Layout Randomization)** (تغيير عناوين الـ Memory عشوائياً)، و**Stack Canaries** (قيم خاصة قبل الـ Return Address بيتم التحقق منها).
+
+---
+
+## Category 6: DNS Attacks
+
+### DNS Cache Poisoning
+
+#### ليه الـ DNS هدف سهل؟
+
+الـ **DNS (Domain Name System)** هو "دليل تليفون" الإنترنت — بيحول الأسماء زي `google.com` لـ IP Addresses. المشكلة:
+
+- **مفيش Built-in Security** في الـ DNS الأصلي
+- **مفيش Authentication** — لا للـ User، ولا للـ DNS Server
+- ده بيخليه هدف مثالي للـ Attackers
+
+#### إزاي بيشتغل الـ DNS Cache Poisoning؟
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Resolver as DNS Resolver
+    participant Poisoned as Compromised DNS Server
+    participant Malicious as Malicious Website
+
+    User->>Resolver: What is the IP of google.com?
+    Resolver->>Poisoned: Query: google.com?
+    
+    Note over Poisoned: Attacker modified the record!
+    Note over Poisoned: google.com used to point to 8.8.8.8
+    Note over Poisoned: Now it points to 5.5.5.5 (malicious)
+    
+    Poisoned->>Resolver: google.com = 5.5.5.5
+    Resolver->>Resolver: Cache this response
+    Resolver->>User: google.com = 5.5.5.5
+    User->>Malicious: Connects to 5.5.5.5 thinking it is Google
+```
+
+> [!WARNING]
+> الضحية مش هتحس بأي حاجة غريبة — هي فعلاً كتبت google.com في الـ Browser. بس بتتبعت لموقع ضار. ممكن الموقع الضار يكون نسخة طبق الأصل من الموقع الحقيقي.
+
+---
+
+### DNS Hijacking (Domain Hijacking)
+
+الـ **DNS Hijacking** مختلف عن الـ DNS Cache Poisoning. هنا الـ Attacker مش بيهاجم الـ DNS Server نفسه — هو بيهاجم **الـ Domain Registrar**.
+
+#### إزاي بيحصل؟
+
+```mermaid
+flowchart TD
+    A[Attacker يبعت Request مزيف للـ Registrar] --> B[يطلب تغيير IP الـ Domain victim.com]
+    B --> C{هل الـ Registrar يتحقق؟}
+    C -- لا يتحقق كافي --> D[Registrar ينفذ التغيير]
+    D --> E[victim.com دلوقتي بيشير للـ Attacker IP]
+    E --> F[كل الزوار بييجوا للـ Attacker]
+    C -- يتحقق بقوة --> G[Attack يفشل]
+```
+
+> [!NOTE]
+> كتير من الـ Domain Registrars الكبيرة دلوقتي بتستخدم Methods أقوى للـ Authentication زي Mail Header Checking، Passwords، وEncrypted/Signed Mail. بس لسا في registrars بتعمل تقريباً مفيش.
+
+#### الفرق بين DNS Cache Poisoning وDNS Hijacking
+
+| المعيار | DNS Cache Poisoning | DNS Hijacking |
+|---|---|---|
+| الهدف | DNS Server / Resolver | Domain Registrar |
+| الأثر | مؤقت حتى انتهاء الـ Cache | دائم حتى التصحيح |
+| الصعوبة | تقنية عالية | Social Engineering غالباً |
+| النطاق | محدود بالـ Cache | عالمي |
+
+---
+
+## Category 7: Malware & Threats
+
+### Keyloggers
+
+الـ **Keylogger** هو Tool بيسجل كل ضغطة كيبورد الـ User يعملها.
+
+#### أنواعه
+
+| النوع | الوصف |
+|---|---|
+| **Hardware Keylogger** | Device صغير بيتوصل بين الكيبورد والكمبيوتر |
+| **Software Keylogger** | برنامج بيتثبت على الجهاز ويسجل كل الضغطات |
+
+#### الاستخدامات
+
+- **ضارة:** سرقة Usernames والـ Passwords والبيانات الحساسة
+- **شرعية:** المنظمات ممكن تستخدمه لمراقبة نشاط الموظفين
+
+---
+
+### Types of Malware
+
+#### نمو الـ Malware عبر السنين
+
+```mermaid
+xychart-beta
+    title "Malware Growth Over Years"
+    x-axis [1990, 2000, 2010, 2020]
+    y-axis "Number of Malware (Millions)" 0 --> 250
+    bar [0.0013, 0.05, 200, 250]
+```
+
+#### طرق التوصيل
+
+الـ **Email** هو أكثر طريقة شائعة لتوصيل الـ Malware. بعدها:
+- الـ Malicious Domains/Websites
+- الـ Removable Media
+- الـ Vulnerable Software
+
+#### أنواع الـ Malware بالتفصيل
+
+---
+
+##### Virus
+
+**الـ Virus** هو Malware بيلصق نفسه بـ Files شرعية وبيتنشر لما الـ File المصاب يتفتح.
+
+```mermaid
+flowchart TD
+    A[Infected notepad.exe] --> B[User runs notepad.exe]
+    B --> C[Virus loads into Memory]
+    C --> D[Virus stays Resident in Memory]
+    D --> E[Scans for other .exe files]
+    E --> F[Infects other executables]
+    F --> G[Data corruption or performance degradation]
+```
+
+**الخصائص:**
+- محتاج User Action عشان يتنشر (فتح File أو تشغيل برنامج)
+- بيفضل في الـ Memory حتى بعد إغلاق الـ File المصاب
+- بيسبب Data Corruption وبطء في الأداء
+
+---
+
+##### Worm
+
+**الـ Worm** بيتنشر تلقائياً على الشبكات **من غير أي تدخل من المستخدم**.
+
+**الفرق الأساسي عن الـ Virus:**
+- الـ Virus بيحتاج File عشان يلصق بيه
+- الـ Worm هو **Executable مستقل** بيتنشر بنفسه
+
+```mermaid
+flowchart LR
+    A[Worm on Machine A] --> B[Scans Network for Vulnerabilities]
+    B --> C[Finds Vulnerable Machine B]
+    C --> D[Exploits Vulnerability]
+    D --> E[Copies itself to Machine B]
+    E --> F[Worm on Machine B]
+    F --> B
+```
+
+**الخصائص:**
+- بياكل الـ Bandwidth وممكن يـ Crash Systems
+- بيتنشر بسرعة كبيرة جداً
+- مش محتاج User Interaction
+
+---
+
+##### Trojan
+
+**الـ Trojan** هو Malware بيتظاهر إنه Software شرعي (لعبة، Installer، Attachment).
+
+**الخصائص:**
+- محتاج User يثبته (Requires User Interaction)
+- بيعمل كـ Backdoor أو Downloader أو Spying Tool
+- معظم الـ Modern Attacks بتستخدم Trojans عشان تكسب **Initial Access**
+
+---
+
+##### Ransomware
+
+**الـ Ransomware** بيشفر ملفاتك ويطلب فدية عشان يفكها.
+
+**الخصائص:**
+- بيستخدم **Strong Encryption** مش ممكن يتكسر بدون الـ Key
+- غالباً بييجي عن طريق Phishing Emails أو RDP Compromise
+- ممكن يوقف شركات كاملة
+
+> [!TIP]
+> أأمن حل ضد الـ Ransomware هو **عمل Backup دوري** لملفاتك على Storage منفصل ومنقطع عن الشبكة (Offline Backup).
+
+---
+
+##### Spyware
+
+**الـ Spyware** مصمم لمراقبة نشاط الـ User سراً.
+
+**أنواعه:**
+- Keyloggers (تسجيل ضغطات الكيبورد)
+- Screen Recording
+- Browser Tracking
+- Credential Stealers
+
+> [!WARNING]
+> الـ Antivirus العادي غالباً مش بيكتشف الـ Spyware بشكل كافي. الـ Tools المتخصصة زي **Spybot** و**Anti-Adware** Tools أكتر فعالية ضده.
+
+---
+
+##### Adware
+
+**الـ Adware** بيعرض إعلانات مزعجة (Popups, Redirects).
+
+**الخصائص:**
+- غالباً بييجي مع Free Applications
+- مزعج بس أقل تدميراً من باقي الـ Malware
+
+---
+
+##### Rootkit
+
+**الـ Rootkit** هو Malware بيخبي نفسه والـ Malwares التانية على الـ System.
+
+**الخصائص:**
+- بيشتغل على مستويات منخفضة جداً: **Kernel** أو **Boot Sector**
+- بيوفر Persistent وغير قابل للاكتشاف Access
+- صعب جداً إزالته
+
+> [!IMPORTANT]
+> الـ Rootkit بيخبي نفسه من الـ Operating System نفسه. يعني حتى الـ Antivirus ممكن ميشوفوش لأنه بيشتغل على Level أعمق. الـ Removal غالباً بيحتاج Boot من External Media.
+
+---
+
+##### Backdoor
+
+**الـ Backdoor** هو طريقة مخفية للوصول للـ System عن بعد بدون Authentication.
+
+**الخصائص:**
+- غالباً بيتثبت عن طريق Trojans
+- بيخلي الـ Attacker يشغل Commands ويسرق Data وينشر المزيد من الـ Malware
+
+---
+
+##### Fileless Malware
+
+**الـ Fileless Malware** مش بيعتمد على Files — بدلاً من كده بيستخدم الـ Memory وأدوات شرعية زي **PowerShell**.
+
+**الخصائص:**
+- صعب جداً الاكتشاف بالـ Antivirus التقليدي
+- بيسيب أثر ضئيل جداً على الـ Disk
+- غالباً جزء من **APT (Advanced Persistent Threat) Attacks**
+
+---
+
+##### Botnet
+
+**الـ Botnet** هو مجموعة Devices متأثرة بـ Malware تحت سيطرة Attacker واحد (الـ Botmaster).
+
+**الاستخدامات:**
+- **DDoS Attacks**
+- إرسال **Spam Emails**
+- نشر **Ransomware**
+- تنفيذ **SYN Flood Attacks**
+
+```mermaid
+flowchart TD
+    BM[Botmaster - Attacker] --> C2[Command and Control Server C2]
+    C2 --> Z1[Zombie 1]
+    C2 --> Z2[Zombie 2]
+    C2 --> Z3[Zombie 3]
+    C2 --> Z4[Zombie N]
+    Z1 --> T[Target]
+    Z2 --> T
+    Z3 --> T
+    Z4 --> T
+```
+
+#### مقارنة شاملة بين أنواع الـ Malware
+
+| النوع | التنشر | يحتاج User | الهدف الأساسي | صعوبة الاكتشاف |
+|---|---|---|---|---|
+| Virus | عبر ملفات | نعم | إتلاف البيانات | متوسطة |
+| Worm | ذاتي عبر الشبكة | لا | الانتشار السريع | متوسطة |
+| Trojan | المستخدم يثبته | نعم | Initial Access | متوسطة |
+| Ransomware | Phishing / RDP | غالباً | الفدية المالية | متوسطة |
+| Spyware | مخفي مع Apps | غالباً | سرقة المعلومات | عالية |
+| Adware | مع Free Apps | نعم | الإزعاج / الإعلانات | منخفضة |
+| Rootkit | عبر Exploits | لا | إخفاء نفسه | عالية جداً |
+| Backdoor | عبر Trojans | لا | Remote Access | عالية |
+| Fileless | في الذاكرة | لا | APT Attacks | عالية جداً |
+| Botnet | Malware | لا | DDoS / Spam | متوسطة |
+
+---
+
+## Category 8: Defense & Detection
+
+### Antivirus Solutions
+
+#### النوع الأول: Signature-Based Detection
+
+الـ **Signature-Based Antivirus** بيعمل كده:
+
+1. يحسب الـ **Hash** (SHA-256، MD5) للـ File
+2. يقارنه بقاعدة بيانات من الـ Hashes المعروفة للـ Malware
+3. كمان بيبحث عن **Unique Patterns** و**Strings** مميزة في الكود
+
+```mermaid
+flowchart TD
+    A[File يتم فحصه] --> B[Antivirus يحسب Hash]
+    B --> C{Hash موجود في قاعدة البيانات؟}
+    C -- نعم --> D[Alert: Malware Detected]
+    C -- لا --> E[يبحث عن Patterns وStrings]
+    E --> F{Pattern مطابق؟}
+    F -- نعم --> D
+    F -- لا --> G[File Clean]
+```
+
+> [!WARNING]
+> الـ Signature-Based Antivirus عنده عيب كبير: **Zero-Day Malware** — أي Malware جديد لم يضاف بعد لقاعدة البيانات — هيعدي من غير اكتشاف. الـ Antivirus updates كل بضع دقائق، بس الـ Attackers دايماً بيعدلوا على الـ Malware عشان يتجنبوا الـ Signature.
+
+#### النوع الثاني: Modern Behavioral Detection
+
+المنظمات الناضجة مش بتعتمد على الـ Signature-Based بس. الـ **Modern Anti-Malware** بيجمع:
+
+| الطريقة | الوصف |
+|---|---|
+| **Signature-Based** | مقارنة الـ Hashes والـ Patterns |
+| **Machine Learning** | نماذج تعلم آلي لاكتشاف السلوك الغريب |
+| **Behavioral Analysis** | مراقبة نشاط البرنامج في الـ Runtime |
+
+```mermaid
+flowchart TD
+    A[File or Process] --> B[Signature Check]
+    A --> C[ML Model Analysis]
+    A --> D[Behavioral Monitoring]
+    B --> E{Any Match?}
+    C --> E
+    D --> E
+    E -- نعم --> F[Alert and Block]
+    E -- لا --> G[Allow]
+    D --> H[Is it doing something suspicious?]
+    H -- نعم --> F
+```
+
+> [!IMPORTANT]
+> الـ Behavioral Analysis هو الأهم دلوقتي. الـ Antivirus مش بس بيقارن Hashes، هو كمان بيراقب **إيه اللي البرنامج بيعمله**. لو برنامج بدأ يعمل Encrypt لملفات بدون إذن — هيتوقف حتى لو مش في قاعدة البيانات.
+
+---
+
+## Summary
+
+### ملخص الـ Lectures 9 و 10
+
+---
+
+**Category 1 — VPN & Secure Tunneling:**
+- الـ VPN بيوفر Encrypted Tunnel فوق الـ Public Internet باستخدام IPSec على الـ Layer 3
+- بيحل مشكلة الـ Leased Lines الغالية والبطيئة
+- حتى على الـ Wireless، الـ Data بتتفك تشفيرها عند الـ Access Point — الحل هو VPN End-to-End
+
+---
+
+**Category 2 — Wireless Security:**
+- WEP وWPA Broken بسبب ضعف الـ Randomness — WPA2/WPA3 هو الصح
+- الـ MAC Addresses والـ Management Frames مش ممكن يتشفروا — خطر أساسي
+- الـ Rogue Access Point هو MITM Attack بسيط وفعال جداً
+
+---
+
+**Category 3 — IoT Security:**
+- 75 Billion Device بدون معايير أمنية موحدة
+- 80% بيشغلوا Linux — ثغرة واحدة زي ShellShock تأثر على الكل
+- الشركات مش بتعمل Updates لأن مفيش قوانين تلزمهم
+
+---
+
+**Category 4 — Social Engineering:**
+- أخطر نوع هجوم — بيتجاوز كل التقنية
+- Phishing للكل، Spear Phishing لهدف محدد
+- Watering Hole: اخترق موقع بيزوره الموظفين وانتظرهم
+- الحل الوحيد: Training وAwareness
+
+---
+
+**Category 5 — Network-Level Attacks:**
+- **Spoofing:** تزوير الـ IP أو MAC أو Email
+- **ARP Poisoning:** تزوير الـ ARP Cache عشان تبقى MITM
+- **SYN Flood:** إغراق الـ Server بـ SYN Packets وهمية حتى ينهار
+- **Buffer Overflow:** كتابة فوق الـ Memory عشان تحول الـ Execution لـ Malicious Code
+
+---
+
+**Category 6 — DNS Attacks:**
+- **DNS Cache Poisoning:** تعديل Record في الـ DNS Server عشان تحول الزوار لموقع ضار
+- **DNS Hijacking:** تغيير الـ Domain عند الـ Registrar نفسه
+
+---
+
+**Category 7 — Malware:**
+- 10 أنواع رئيسية من الـ Malware لكل منها طريقة عمل وهدف مختلف
+- Email هو أكتر طريقة شائعة لتوصيل الـ Malware
+- Fileless Malware والـ Rootkits هم الأصعب في الاكتشاف
+
+---
+
+**Category 8 — Defense:**
+- Signature-Based لوحده مش كافي — بيفوته الـ Zero-Day
+- الحل الحديث: Signature + Machine Learning + Behavioral Analysis
+- دايماً راقب الـ Behavior مش بس الـ Hash
