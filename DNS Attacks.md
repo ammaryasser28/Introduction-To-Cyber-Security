@@ -76,7 +76,6 @@ flowchart TD
 | النطاق | محدود بالـ Cache | عالمي |
 
 ## Summary
-**DNS Attacks:**
 - **DNS Cache Poisoning:** تعديل Record في الـ DNS Server عشان تحول الزوار لموقع ضار
 - **DNS Hijacking:** تغيير الـ Domain عند الـ Registrar نفسه
 
