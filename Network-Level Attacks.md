@@ -223,8 +223,6 @@ flowchart TD
 > الحماية من الـ Buffer Overflow بتتم بعدة طرق: **Input Validation** (التحقق من البيانات المدخلة)، **ASLR (Address Space Layout Randomization)** (تغيير عناوين الـ Memory عشوائياً)، و**Stack Canaries** (قيم خاصة قبل الـ Return Address بيتم التحقق منها).
 
 ## Summary
-
-**Network-Level Attacks:**
 - **Spoofing:** تزوير الـ IP أو MAC أو Email
 - **ARP Poisoning:** تزوير الـ ARP Cache عشان تبقى MITM
 - **SYN Flood:** إغراق الـ Server بـ SYN Packets وهمية حتى ينهار
