@@ -1,13 +1,13 @@
 > **الهدف من الـ Section ده:**  
 > هنتعرف على أشهر الهجمات اللي بتستهدف DNS (Domain Name System)، واللي بيعتبر من أهم مكونات الإنترنت لكنه في نفس الوقت بيحتوي على نقاط ضعف خطيرة.
-
+---
 ## Table of Contents
 - [DNS Attacks](#dns-attacks)
   - [DNS Cache Poisoning](#dns-cache-poisoning)
   - [DNS Hijacking (Domain Hijacking)](#dns-hijacking-domain-hijacking)
 - [Summary](#summary)
 
-
+---
 ## DNS Attacks
 
 ### DNS Cache Poisoning
