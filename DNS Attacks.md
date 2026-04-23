@@ -75,6 +75,8 @@ flowchart TD
 | الصعوبة | تقنية عالية | Social Engineering غالباً |
 | النطاق | محدود بالـ Cache | عالمي |
 
+---
+
 ## Summary
 - **DNS Cache Poisoning:** تعديل Record في الـ DNS Server عشان تحول الزوار لموقع ضار
 - **DNS Hijacking:** تغيير الـ Domain عند الـ Registrar نفسه
