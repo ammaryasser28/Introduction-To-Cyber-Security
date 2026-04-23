@@ -166,7 +166,7 @@ mindmap
 - الـ MAC Addresses والـ Management Frames مش ممكن يتشفروا — خطر أساسي
 - الـ Rogue Access Point هو MITM Attack بسيط وفعال جداً
 
----
+
 
 **IoT Security:**
 - 75 Billion Device بدون معايير أمنية موحدة
