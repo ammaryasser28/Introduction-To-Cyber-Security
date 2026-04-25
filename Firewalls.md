@@ -1,5 +1,6 @@
-> **الهدف من الـ Section ده:** هتفهم إزاي الـ Firewall بيشتغل وإيه الفرق بين أنواعه المختلفة، وإزاي الـ Network Security بتتبنى من خلال أدوات زي الـ DMZ والـ IDS والـ IPS والـ Sinkhole — وده كله هيخليك كـ SOC Analyst تفهم اللي بيحصل على الشبكة وتتعامل معاه صح.
 
+> **الهدف من الـ Section ده:**  
+> هنتعرف على دور الـ Firewall في حماية الشبكة، وإزاي بيطبق Rules للتحكم في الـ Traffic، وكمان الفرق بين أنواع الـ Packet Inspection والـ Firewalls زي Stateless وStateful.
 ---
 
 ## Table of Contents
