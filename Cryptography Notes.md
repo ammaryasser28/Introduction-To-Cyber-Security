@@ -2,30 +2,31 @@
 
 ## Table of Contents
 
-- [Category 1: Cryptography Fundamentals](#category-1-cryptography-fundamentals)
+
+- [Cryptography Fundamentals](#cryptography-fundamentals)
   - [What is Cryptography?](#what-is-cryptography)
   - [Important Terms in Cryptography](#important-terms-in-cryptography)
-- [Category 2: Encryption Algorithms](#category-2-encryption-algorithms)
+- [Encryption Algorithms](#encryption-algorithms)
   - [Symmetric Encryption](#symmetric-encryption)
   - [Asymmetric Encryption](#asymmetric-encryption)
   - [Hybrid Encryption](#hybrid-encryption)
-- [Category 3: Steganography vs Cryptography](#category-3-steganography-vs-cryptography)
-- [Category 4: Cryptography Algorithm Strength](#category-4-cryptography-algorithm-strength)
-- [Category 5: Hashing](#category-5-hashing)
+- [Steganography vs Cryptography](#steganography-vs-cryptography)
+- [Cryptography Algorithm Strength](#cryptography-algorithm-strength)
+- [Hashing](#hashing)
   - [What is a Hash?](#what-is-a-hash)
   - [Hash vs Encryption](#hash-vs-encryption)
   - [Hash Algorithms](#hash-algorithms)
   - [Hash Collisions](#hash-collisions)
-- [Category 6: Digital Signatures and Certificates](#category-6-digital-signatures-and-certificates)
+- [Digital Signatures and Certificates](#digital-signatures-and-certificates)
   - [Digital Signature](#digital-signature)
   - [Digital Certificate](#digital-certificate)
   - [Digital Signature vs Digital Certificate](#digital-signature-vs-digital-certificate)
-- [Category 7: Man-In-The-Middle Attack in Cryptography](#category-7-man-in-the-middle-attack-in-cryptography)
+- [Man-In-The-Middle Attack in Cryptography](#man-in-the-middle-attack-in-cryptography)
 - [Summary](#summary)
 
 ---
 
-## Category 1: Cryptography Fundamentals
+## Cryptography Fundamentals
 
 ### What is Cryptography?
 
@@ -84,7 +85,7 @@ graph LR
 
 ---
 
-## Category 2: Encryption Algorithms
+## Encryption Algorithms
 
 ### Symmetric Encryption
 
@@ -188,7 +189,7 @@ sequenceDiagram
 
 ---
 
-## Category 3: Steganography vs Cryptography
+## Steganography vs Cryptography
 
 ### الفرق الجوهري
 
@@ -219,7 +220,7 @@ graph TD
 
 ---
 
-## Category 4: Cryptography Algorithm Strength
+## Cryptography Algorithm Strength
 
 ### ليه حجم الـ Key مهم؟
 
@@ -280,7 +281,7 @@ graph LR
 
 ---
 
-## Category 5: Hashing
+## Hashing
 
 ### What is a Hash?
 
@@ -398,7 +399,7 @@ graph LR
 
 ---
 
-## Category 6: Digital Signatures and Certificates
+## Digital Signatures and Certificates
 
 ### Digital Signature
 
@@ -485,7 +486,7 @@ graph TD
 
 ---
 
-## Category 7: Man-In-The-Middle Attack in Cryptography
+## Man-In-The-Middle Attack in Cryptography
 
 ### كيف يحدث الهجوم؟
 
