@@ -1,18 +1,8 @@
 > **الهدف من الـ Section ده:**  
-> بيشرح ببساطة إزاي تنظم الشبكة وتتحكم في Traffic باستخدام الـ DMZ لعزل السيرفرات العامة عن الشبكة الداخلية، والـ Sinkhole لمنع المواقع الضارة بشكل سهل وفعال.
+> بيشرح ببساطة إزاي تنظم الشبكة وتتحكم في Traffic باستخدام الـ DMZ لعزل السيرفرات العامة عن الشبكة الداخلية.
 
 
-
-## Table of Contents
-
-- [Network Zones & Traffic Control](#network-zones--traffic-control)
-  - [1.1 DMZ (Demilitarized Zone)](#21-dmz-demilitarized-zone)
-  - [1.2 Sinkhole](#22-sinkhole)
-- [Summary](#summary)
-
-## Network Zones & Traffic Control
-
-### 2.1 DMZ (Demilitarized Zone)
+## DMZ (Demilitarized Zone)
 
 #### ما هو الـ DMZ؟
 
@@ -97,42 +87,6 @@ graph LR
 
 ---
 
-### 2.2 Sinkhole
-
-#### المشكلة
-
-لو عايز تمنع موظفيك من الوصول لمواقع معينة (مواقع ضارة، سوشيال ميديا، إلخ) باستخدام الـ Firewall — هتعمل Rules كتير جداً، وكل Packet هيعدي عليها كلها، وده بيزود الـ **Latency** على الشبكة كلها.
-
-#### الحل: Sinkhole
-
-الفكرة إنك بدل ما تحط الـ Block في الـ Firewall، بتحطه في الـ **DNS Server** بتاع الشركة.
-
-```mermaid
-graph TD
-    Employee[Employee PC]
-    DNS[Company DNS Server]
-    BadSite[malicious-site.com]
-    Sinkhole[0.0.0.0 - Sinkhole]
-    GoodSite[allowed-site.com]
-    RealIP[Real IP of allowed site]
-
-    Employee -- Request: malicious-site.com --> DNS
-    DNS -- Blocked - Resolve to --> Sinkhole
-    Employee -- Request: allowed-site.com --> DNS
-    DNS -- Resolve to --> RealIP
-```
-
-**كيف يعمل؟**
-
-1. الموظف بيحاول يفتح موقع محجوب.
-2. الـ DNS بتاع الشركة شايف إن الموقع ده محجوب.
-3. بدل ما يرجع الـ IP الحقيقي، بيرجع **0.0.0.0** (الـ Sinkhole Address).
-4. الـ Browser مش هيلاقي Destination يتصل بيه — الموقع مش هيفتح.
-
-> [!TIP]
-> الـ Sinkhole أذكى من الـ Firewall Block في الحالة دي لأنه مش بيضيف أي Load على الـ Firewall ومش بيأثر على الـ Latency. الموضوع كله بيتحسم على مستوى الـ DNS.
-
 ## Summary
 
 - الـ **DMZ** هو المنطقة اللي بتحط فيها الـ Public Servers — وهي الأكثر عرضة للهجمات وبالتالي الأولى بالـ Patching والتأمين.
-- الـ **Sinkhole** حل ذكي وبسيط لحجب المواقع عن طريق الـ DNS بدل الـ Firewall، وده بيحافظ على الـ Performance.
