@@ -4,9 +4,6 @@
 --- 
 
 ## Table of Contents
-
-
-- [Network Fundamentals](#network-fundamentals)
   - [LAN and WAN](#1-lan-and-wan)
   - [Network Devices — Switches vs Routers](#2-network-devices--switches-vs-routers)
   - [Protocols](#3-protocols)
