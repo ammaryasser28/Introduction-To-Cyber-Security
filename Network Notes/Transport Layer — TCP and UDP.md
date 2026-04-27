@@ -16,7 +16,7 @@
 
 ## Transport Layer — TCP and UDP
 
-### 14. Network Ports
+### Network Ports
 
 #### ما هي الـ Ports؟
 
@@ -69,7 +69,7 @@ Source Port: 443          Destination Port: 49155
 
 ---
 
-### 15. TCP — Transmission Control Protocol
+### TCP — Transmission Control Protocol
 
 الـ **TCP** هو بروتوكول **Connection-Oriented** — بيبني Connection بين الطرفين وبيراقب حالة الـ Connection دي.
 
@@ -84,7 +84,7 @@ Source Port: 443          Destination Port: 49155
 
 ---
 
-### 16. TCP Header and Flags
+### TCP Header and Flags
 
 #### هيكل الـ TCP Header
 
@@ -125,7 +125,7 @@ Source Port: 443          Destination Port: 49155
 
 ---
 
-### 17. TCP 3-Way Handshake
+### TCP 3-Way Handshake
 
 الـ **3-Way Handshake** هو الإجراء اللي TCP بيعمله عشان يبني Connection قبل ما يبعت أي داتا حقيقية. بيحصل كل ما في Session جديدة بين جهازين.
 
@@ -156,7 +156,7 @@ sequenceDiagram
 
 ---
 
-### 18. TCP 4-Way Termination
+### TCP 4-Way Termination
 
 لما الـ Communication خلصت، الـ Connection بيتقفل بشكل منظم في **4 خطوات**:
 
@@ -180,7 +180,7 @@ sequenceDiagram
 
 ---
 
-### 19. UDP — User Datagram Protocol
+### UDP — User Datagram Protocol
 
 الـ **UDP** هو **Connectionless Protocol** — بيبعت الداتا من غير ما يبني Connection أو يستنى Confirmation.
 
