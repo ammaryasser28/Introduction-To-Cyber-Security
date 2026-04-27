@@ -5,18 +5,18 @@
 
 ## Table of Contents
 
-  - [IPv4 Header](#9-ipv4-header)
-  - [IP Protocol Requirements](#10-ip-protocol-requirements)
-  - [Routing and Routing Table](#11-routing-and-routing-table)
-  - [ARP Protocol](#12-arp-protocol)
-  - [Private and Public IPs — NAT](#13-private-and-public-ips--nat)
+  - [IPv4 Header](#ipv4-header)
+  - [IP Protocol Requirements](#ip-protocol-requirements)
+  - [Routing and Routing Table](#routing-and-routing-table)
+  - [ARP Protocol](#arp-protocol)
+  - [Private and Public IPs — NAT](#private-and-public-ips--nat)
   - [Summary](#summary)
 
 ---
 
 ## IP Addressing and Routing
 
-### 9. IPv4 Header
+### IPv4 Header
 
 الـ **IPv4 Header** هو الـ Header الموجود في الـ Network Layer (Layer 3). كل صف فيه بيمثل **32 Bit (4 Bytes)**، والحد الأدنى لحجم الـ Header هو **20 Bytes**.
 
@@ -67,7 +67,7 @@ graph TD
 
 ---
 
-### 10. IP Protocol Requirements
+### IP Protocol Requirements
 
 عشان الكومبيوتر يقدر يتواصل على الشبكة، لازم يكون عنده 3 حاجات أساسية:
 
@@ -90,7 +90,7 @@ graph TD
 
 ---
 
-### 11. Routing and Routing Table
+### Routing and Routing Table
 
 الـ **Routing Table** هي جدول موجود في كل Router (وحتى في الـ PC الخاص بك) بيوضح إزاي الـ Packets بتتوجه لوجهتها.
 
@@ -110,7 +110,7 @@ flowchart TD
 
 ---
 
-### 12. ARP Protocol
+### ARP Protocol
 
 #### ما هو الـ ARP؟
 
@@ -152,7 +152,7 @@ arp -a
 
 ---
 
-### 13. Private and Public IPs — NAT
+### Private and Public IPs — NAT
 
 #### Private vs Public IP Addresses
 
