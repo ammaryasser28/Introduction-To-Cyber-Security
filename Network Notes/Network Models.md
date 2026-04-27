@@ -5,8 +5,6 @@
 
 ## Table of Contents
 
-
-- [Network Models — OSI and TCP/IP](#category-3-network-models--osi-and-tcpip)
   - [OSI Model](#6-osi-model)
   - [TCP/IP Model](#7-tcpip-model)
   - [OSI vs TCP/IP Comparison](#8-osi-vs-tcpip-comparison)
