@@ -4,17 +4,16 @@
 ---
 
 ## Table of Contents
-- [Diagnostic Tools](#diagnostic-tools)
-  - [Ping](#23-ping)
-  - [Traceroute / Tracert](#24-traceroute--tracert)
-  - [Loopback Address](#25-loopback-address)
+  - [Ping](#ping)
+  - [Traceroute / Tracert](#traceroute--tracert)
+  - [Loopback Address](#loopback-address)
   - [Summary](#summary)
 
 ---
 
 ## Diagnostic Tools
 
-### 23. Ping
+### Ping
 
 الـ **Ping** هو أبسط Tool لاختبار الاتصال بين جهازين أو للتأكد إن جهاز معين متاح.
 
@@ -36,7 +35,7 @@ ping 8.8.8.8
 
 ---
 
-### 24. Traceroute / Tracert
+### Traceroute / Tracert
 
 الـ **Traceroute** (Linux/Mac) أو **Tracert** (Windows) بيساعدك تكتشف **المسار الفعلي** اللي الـ Packets بتأخده بين جهازين.
 
@@ -76,7 +75,7 @@ traceroute google.com
 
 ---
 
-### 25. Loopback Address
+### Loopback Address
 
 الـ **Loopback Address** هو `127.0.0.1` — أي Packet بتبعته لده بيتبعت لنفس جهازك.
 
