@@ -4,12 +4,12 @@
 ---
 
 ## Table of Contents
-  - [Network Ports](#14-network-ports)
-  - [TCP — Transmission Control Protocol](#15-tcp--transmission-control-protocol)
-  - [TCP Header and Flags](#16-tcp-header-and-flags)
-  - [TCP 3-Way Handshake](#17-tcp-3-way-handshake)
-  - [TCP 4-Way Termination](#18-tcp-4-way-termination)
-  - [UDP — User Datagram Protocol](#19-udp--user-datagram-protocol)
+  - [Network Ports](#network-ports)
+  - [TCP — Transmission Control Protocol](#tcp--transmission-control-protocol)
+  - [TCP Header and Flags](#tcp-header-and-flags)
+  - [TCP 3-Way Handshake](#tcp-3-way-handshake)
+  - [TCP 4-Way Termination](#tcp-4-way-termination)
+  - [UDP — User Datagram Protocol](#udp--user-datagram-protocol)
   - [Summary](#summary)
 
 ---
