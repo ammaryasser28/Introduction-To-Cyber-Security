@@ -5,7 +5,6 @@
 
 ## Table of Contents
 
-- [IP Addressing and Routing](#ip-addressing-and-routing)
   - [IPv4 Header](#9-ipv4-header)
   - [IP Protocol Requirements](#10-ip-protocol-requirements)
   - [Routing and Routing Table](#11-routing-and-routing-table)
