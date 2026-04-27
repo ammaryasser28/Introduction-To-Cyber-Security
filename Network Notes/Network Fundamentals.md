@@ -4,14 +4,14 @@
 --- 
 
 ## Table of Contents
-  - [LAN and WAN](#1-lan-and-wan)
-  - [Network Devices — Switches vs Routers](#2-network-devices--switches-vs-routers)
-  - [Protocols](#3-protocols)
+  - [LAN and WAN](#lan-and-wan)
+  - [Network Devices — Switches vs Routers](#network-devices--switches-vs-routers)
+  - [Protocols](#protocols)
   - [Summary](#summary)
 ---
 ## Network Fundamentals
 
-### 1. LAN and WAN
+### LAN and WAN
 
 الشبكات بتتقسم بشكل أساسي على حسب **الحجم الجغرافي** اللي بتغطيه.
 
@@ -47,7 +47,7 @@ graph LR
 
 ---
 
-### 2. Network Devices — Switches vs Routers
+### Network Devices — Switches vs Routers
 
 في أي شبكة، في جهازين أساسيين بيتحكموا في الـ Traffic:
 
@@ -86,7 +86,7 @@ graph TD
 
 ---
 
-### 3. Protocols
+### Protocols
 
 الـ **Protocol** هو مجموعة من القواعد اللي بتحدد إزاي الأجهزة بتتكلم مع بعض. من غير Protocols، الأجهزة مش هتفهم بعض أبداً.
 
