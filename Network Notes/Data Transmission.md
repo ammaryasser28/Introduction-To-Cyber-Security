@@ -4,16 +4,15 @@
 
 ## Table of Contents
 
-- [Data Transmission — Packets and Encapsulation](#data-transmission--packets-and-encapsulation)
-  - [Packets and Packet Structure](#4-packets-and-packet-structure)
-  - [Encapsulation and De-encapsulation](#5-encapsulation-and-de-encapsulation)
+  - [Packets and Packet Structure](#packets-and-packet-structure)
+  - [Encapsulation and De-encapsulation](#encapsulation-and-de-encapsulation)
   - [Summary](#summary)
 
 --- 
 
 ## Data Transmission — Packets and Encapsulation
 
-### 4. Packets and Packet Structure
+### Packets and Packet Structure
 
 #### ما هو الـ Packet؟
 
@@ -47,7 +46,7 @@ graph LR
 
 ---
 
-### 5. Encapsulation and De-encapsulation
+### Encapsulation and De-encapsulation
 
 #### ما هو الـ Encapsulation؟
 
