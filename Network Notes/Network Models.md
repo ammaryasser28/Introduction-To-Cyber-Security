@@ -5,14 +5,14 @@
 
 ## Table of Contents
 
-  - [OSI Model](#6-osi-model)
-  - [TCP/IP Model](#7-tcpip-model)
-  - [OSI vs TCP/IP Comparison](#8-osi-vs-tcpip-comparison)
+  - [OSI Model](#osi-model)
+  - [TCP/IP Model](#tcpip-model)
+  - [OSI vs TCP/IP Comparison](#osi-vs-tcpip-comparison)
   - [Summary](#summary)
 ---
 ## Network Models — OSI and TCP/IP
 
-### 6. OSI Model
+### OSI Model
 
 الـ **OSI (Open Systems Interconnection) Model** هو نموذج نظري من 7 Layers بيوضّح إزاي الأجهزة بتتواصل مع بعض. كل Layer ليها وظيفة محددة.
 
@@ -99,7 +99,7 @@ graph TD
 
 ---
 
-### 7. TCP/IP Model
+### TCP/IP Model
 
 الـ **TCP/IP Model** هو النموذج العملي اللي الإنترنت بيشتغل عليه فعلاً. عنده 4 Layers بدل 7.
 
@@ -124,7 +124,7 @@ graph TD
 
 ---
 
-### 8. OSI vs TCP/IP Comparison
+### OSI vs TCP/IP Comparison
 
 ```mermaid
 graph LR
