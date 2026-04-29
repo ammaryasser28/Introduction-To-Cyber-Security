@@ -1,5 +1,5 @@
 > **الهدف من الـ Section ده:**  
-> بيشرح الفرق بين الـ Shallow Packet Inspection والـ Deep Packet Inspection (DPI)، ويفهمك إمتى الفحص السطحي يكفي وإمتى تحتاج تحليل عميق للـ Payload لاكتشاف التهديدات المتقدمة.ا
+> بيشرح الفرق بين الـ Shallow Packet Inspection والـ Deep Packet Inspection (DPI)، ويفهمك إمتى الفحص السطحي يكفي وإمتى تحتاج تحليل عميق للـ Payload لاكتشاف التهديدات المتقدمة.
 ---
 
 ## Table of Contents
