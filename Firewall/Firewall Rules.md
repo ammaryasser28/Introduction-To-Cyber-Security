@@ -9,9 +9,8 @@
 
 ---
 
-## Firewall Rules
 
-### Rule Structure
+## Rule Structure
 
 كل Rule بتتكوّن من العناصر دي:
 
@@ -48,7 +47,7 @@ DENY     UDP        Internal_Net      ANY               53
 
 ---
 
-### Default Policy
+## Default Policy
 
 | النوع | المعنى | التوصية |
 |------|--------|---------|
@@ -60,7 +59,7 @@ DENY     UDP        Internal_Net      ANY               53
 
 ---
 
-### SOC Analyst & Firewalls
+## SOC Analyst & Firewalls
 
 كـ **SOC Analyst**، دورك مش كتابة الـ Rules (ده شغل الـ Network Security Engineer) — لكن لازم:
 
