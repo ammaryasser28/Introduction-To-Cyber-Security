@@ -1,3 +1,8 @@
+> **الهدف من الـ Section ده:**  
+> بيعرّفك يعني إيه Firewall، بيتحط فين داخل الشبكة، وإزاي بياخد قراراته بناءً على الـ Rules لحماية الأنظمة ومنع الوصول غير المصرح بيه.
+---
+
+
 ## Table of Contents
 
 - [What is a Firewall?](#what-is-a-firewall)
