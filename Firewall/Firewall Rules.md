@@ -1,3 +1,6 @@
+> **الهدف من الـ Section ده:**  
+> بيشرح إزاي الـ Firewall بيتحكم في الـ Traffic من خلال الـ Rules، ويفهمك أهمية الـ Default Policy، ودور الـ SOC Analyst في تحليل الـ Logs واكتشاف أي نشاط مش طبيعي.
+---
 
 ## Table of Contents
 
