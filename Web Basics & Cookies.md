@@ -5,15 +5,15 @@
 
 ## Table of Contents
 
-[How a Website Works](#1-how-a-website-works)
-[Web Servers & Ports](#2-web-servers--ports)
-[HTTP & the Request-Response Model](#3-http--the-request-response-model)
-[HTTP Status Codes](#4-http-status-codes)
-[Content Delivery Networks (CDN)](#5-content-delivery-networks-cdn)
-[HTTP Redirects (301 & 302)](#6-http-redirects-301--302)
-[Web Exercise — Full Page Load Walkthrough](#7-web-exercise--full-page-load-walkthrough)
-[Cookies](#8-cookies)
-[Summary](#9-summary)
+- [How a Website Works](#1-how-a-website-works)
+- [Web Servers & Ports](#2-web-servers--ports)
+- [HTTP & the Request-Response Model](#3-http--the-request-response-model)
+- [HTTP Status Codes](#4-http-status-codes)
+- [Content Delivery Networks (CDN)](#5-content-delivery-networks-cdn)
+- [HTTP Redirects (301 & 302)](#6-http-redirects-301--302)
+- [Web Exercise — Full Page Load Walkthrough](#7-web-exercise--full-page-load-walkthrough)
+- [Cookies](#8-cookies)
+- [Summary](#9-summary)
 
 ---
 
