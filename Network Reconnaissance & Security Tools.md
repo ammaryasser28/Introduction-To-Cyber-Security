@@ -5,16 +5,17 @@
 
 ## Table of Contents
 
-1. [Sniffers — أدوات التقاط الحزم](#sniffers)
-2. [Port Scanners — أدوات فحص المنافذ](#port-scanners)
-3. [Vulnerability Scanners — أدوات كشف الثغرات](#vulnerability-scanners)
-4. [Penetration Testing — اختبار الاختراق](#penetration-testing)
-5. [Honeypots — فخاخ المهاجمين](#honeypots)
+- [Sniffers — أدوات التقاط الحزم](#sniffers)
+- [Port Scanners — أدوات فحص المنافذ](#port-scanners)
+- [Vulnerability Scanners — أدوات كشف الثغرات](#vulnerability-scanners)
+- [Penetration Testing — اختبار الاختراق](#penetration-testing)
+- [Honeypots — فخاخ المهاجمين](#honeypots)
+- [Summary](#Summary)
 6. [ملخص](#summary)
 
 ---
 
-## Sniffers — أدوات التقاط الحزم {#sniffers}
+## Sniffers — أدوات التقاط الحزم 
 
 ### إيه هو الـ Sniffer؟
 
@@ -50,7 +51,7 @@ graph LR
 
 ---
 
-## Port Scanners — أدوات فحص المنافذ {#port-scanners}
+## Port Scanners — أدوات فحص المنافذ 
 
 ### ليه Port Scanning مهم؟
 
@@ -123,7 +124,7 @@ sequenceDiagram
 
 ---
 
-## Vulnerability Scanners — أدوات كشف الثغرات {#vulnerability-scanners}
+## Vulnerability Scanners — أدوات كشف الثغرات 
 
 ### المرحلة الجاية بعد الـ Port Scanning
 
@@ -151,7 +152,7 @@ graph TD
 
 ---
 
-## Penetration Testing — اختبار الاختراق {#penetration-testing}
+## Penetration Testing — اختبار الاختراق 
 
 ### الفكرة الأساسية
 
@@ -173,7 +174,7 @@ graph LR
 
 ---
 
-## Honeypots — فخاخ المهاجمين {#honeypots}
+## Honeypots — فخاخ المهاجمين 
 
 ### إيه هو الـ Honeypot؟
 
@@ -200,8 +201,7 @@ graph TD
 
 ---
 
-## ملخص {#summary}
-
+## Summary
 | الأداة | الوظيفة | من بيستخدمها |
 |--------|---------|-------------|
 | **Sniffer** | التقاط الـ raw network packets | المهاجم والمدافع |
