@@ -14,7 +14,7 @@
 
 ---
 
-## Sniffers — أدوات التقاط الحزم 
+## Sniffers 
 
 ### إيه هو الـ Sniffer؟
 
@@ -50,7 +50,7 @@ graph LR
 
 ---
 
-## Port Scanners — أدوات فحص المنافذ 
+## Port Scanners 
 
 ### ليه Port Scanning مهم؟
 
@@ -123,7 +123,7 @@ sequenceDiagram
 
 ---
 
-## Vulnerability Scanners — أدوات كشف الثغرات 
+## Vulnerability Scanners 
 
 ### المرحلة الجاية بعد الـ Port Scanning
 
@@ -151,7 +151,7 @@ graph TD
 
 ---
 
-## Penetration Testing — اختبار الاختراق 
+## Penetration Testing 
 
 ### الفكرة الأساسية
 
@@ -173,7 +173,7 @@ graph LR
 
 ---
 
-## Honeypots — فخاخ المهاجمين 
+## Honeypots  
 
 ### إيه هو الـ Honeypot؟
 
