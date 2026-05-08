@@ -11,7 +11,6 @@
 - [Penetration Testing — اختبار الاختراق](#penetration-testing)
 - [Honeypots — فخاخ المهاجمين](#honeypots)
 - [Summary](#Summary)
-6. [ملخص](#summary)
 
 ---
 
