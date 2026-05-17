@@ -2,22 +2,21 @@
 > هتفهم إيه الـ WAF وليه الـ Traditional Firewall مش كافي لحماية الـ Web Applications، وإزاي الـ WAF بيشوف الـ HTTP Traffic ويقدر يكتشف الـ Attacks اللي بتعدي من فوق الـ Traditional Firewall عادي.
 ---
 
-# WAF — Web Application Firewall
 
 ## Table of Contents
 
-- [1. ليه الـ Traditional Firewall مش كافي؟](#1-ليه-الـ-traditional-firewall-مش-كافي)
-- [2. إيه هو الـ WAF؟](#2-إيه-هو-الـ-waf)
-- [3. الفرق بين الـ Firewall والـ WAF](#3-الفرق-بين-الـ-firewall-والـ-waf)
-- [4. إزاي الـ WAF بيشتغل؟](#4-إزاي-الـ-waf-بيشتغل)
-- [5. أنواع الـ WAF](#5-أنواع-الـ-waf)
-- [6. الـ WAF بيحمي من إيه؟](#6-الـ-waf-بيحمي-من-إيه)
-- [7. حدود الـ WAF](#7-حدود-الـ-waf)
-- [8. Summary](#8-summary)
+- [ ليه الـ Traditional Firewall مش كافي؟](#1-ليه-الـ-traditional-firewall-مش-كافي)
+- [ إيه هو الـ WAF؟](#2-إيه-هو-الـ-waf)
+- [ الفرق بين الـ Firewall والـ WAF](#3-الفرق-بين-الـ-firewall-والـ-waf)
+- [ إزاي الـ WAF بيشتغل؟](#4-إزاي-الـ-waf-بيشتغل)
+- [ أنواع الـ WAF](#5-أنواع-الـ-waf)
+- [ الـ WAF بيحمي من إيه؟](#6-الـ-waf-بيحمي-من-إيه)
+- [ حدود الـ WAF](#7-حدود-الـ-waf)
+- [Summary](#8-summary)
 
 ---
 
-## 1. ليه الـ Traditional Firewall مش كافي؟
+## ليه الـ Traditional Firewall مش كافي؟
 
 عشان نفهم الـ WAF، لازم الأول نفهم ليه الـ Traditional Firewall بيفشل في بعض الحالات.
 
@@ -52,7 +51,7 @@ Source IP: 192.168.1.5  →  Destination: 10.0.0.1:443  →  Protocol: TCP  → 
 
 ---
 
-## 2. إيه هو الـ WAF؟
+## إيه هو الـ WAF؟
 
 الـ **WAF (Web Application Firewall)** هو **Security Control** بيتحط قُدّام الـ Web Applications عشان يفحص كل الـ **HTTP/HTTPS Traffic** اللي بيجيلها.
 
@@ -71,7 +70,7 @@ graph LR
 
 ---
 
-## 3. الفرق بين الـ Firewall والـ WAF
+## الفرق بين الـ Firewall والـ WAF
 
 | Feature | Traditional Firewall | WAF |
 |---|---|---|
@@ -106,7 +105,7 @@ graph TD
 
 ---
 
-## 4. إزاي الـ WAF بيشتغل؟
+## إزاي الـ WAF بيشتغل؟
 
 الـ WAF بيفحص كل جزء في الـ HTTP Request قبل ما توصل للـ Web Application.
 
@@ -169,7 +168,7 @@ Action: BLOCK → Return 403 Forbidden
 
 ---
 
-## 5. أنواع الـ WAF
+## أنواع الـ WAF
 
 فيه تلات أنواع رئيسية للـ WAF بناءً على طريقة الـ Deployment:
 
@@ -204,7 +203,7 @@ graph TD
 
 ---
 
-## 6. الـ WAF بيحمي من إيه؟
+## الـ WAF بيحمي من إيه؟
 
 الـ WAF بيحمي من الـ **OWASP Top 10** وغيرها من الـ Application-level Attacks:
 
@@ -237,7 +236,7 @@ graph TD
 
 ---
 
-## 7. حدود الـ WAF
+## حدود الـ WAF
 
 الـ WAF مش حل سحري وعنده حدوده:
 
@@ -271,7 +270,7 @@ graph TD
 
 ---
 
-## 8. Summary
+## Summary
 
 - الـ **Traditional Firewall** بيشتغل على الـ **Layer 3 و 4** ويشوف بس الـ IP والـ Port والـ Protocol — وبالتالي هو أعمى تجاه الـ Application-level Attacks.
 
