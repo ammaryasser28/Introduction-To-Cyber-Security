@@ -5,14 +5,14 @@
 
 ## Table of Contents
 
-- [ ليه الـ Traditional Firewall مش كافي؟](#1-ليه-الـ-traditional-firewall-مش-كافي)
-- [ إيه هو الـ WAF؟](#2-إيه-هو-الـ-waf)
-- [ الفرق بين الـ Firewall والـ WAF](#3-الفرق-بين-الـ-firewall-والـ-waf)
-- [ إزاي الـ WAF بيشتغل؟](#4-إزاي-الـ-waf-بيشتغل)
-- [ أنواع الـ WAF](#5-أنواع-الـ-waf)
-- [ الـ WAF بيحمي من إيه؟](#6-الـ-waf-بيحمي-من-إيه)
-- [ حدود الـ WAF](#7-حدود-الـ-waf)
-- [Summary](#8-summary)
+- [ ليه الـ Traditional Firewall مش كافي؟](#ليه-الـ-traditional-firewall-مش-كافي)
+- [ إيه هو الـ WAF؟](#إيه-هو-الـ-waf)
+- [ الفرق بين الـ Firewall والـ WAF](#الفرق-بين-الـ-firewall-والـ-waf)
+- [ إزاي الـ WAF بيشتغل؟](#إزاي-الـ-waf-بيشتغل)
+- [ أنواع الـ WAF](#أنواع-الـ-waf)
+- [ الـ WAF بيحمي من إيه؟](#الـ-waf-بيحمي-من-إيه)
+- [ حدود الـ WAF](#حدود-الـ-waf)
+- [Summary](#summary)
 
 ---
 
