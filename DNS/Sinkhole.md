@@ -3,7 +3,6 @@
 
 ---
 
-# DNS Sinkhole — The Smart Blocking Technique
 
 ## Table of Contents
 
