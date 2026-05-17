@@ -1,4 +1,4 @@
-> **الهدف من الـ Section ده:**
+> **الهدف من الـ Section ده:**  
 > هتفهم إيه هو الـ DNS Sinkhole، إزاي بيشتغل كـ Technique لحجب المواقع الضارة، وإيه الـ Limitations بتاعته — وإيه اللي ممكن يخلي حد يـ Bypass الـ Technique دي.
 
 ---
