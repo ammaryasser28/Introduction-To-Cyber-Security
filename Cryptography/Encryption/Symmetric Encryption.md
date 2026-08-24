@@ -40,7 +40,6 @@ flowchart LR
     C --> D[Decryption: Bob decrypts ciphertext using the same key]
 ```
 
-**مثال توضيحي (زي اللي في الـ PDF):**
 
 | الخطوة | اللي بيحصل |
 |---|---|
