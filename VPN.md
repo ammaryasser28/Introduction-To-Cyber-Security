@@ -31,7 +31,6 @@ By the end of this section, you will be able to:
 - [VPN and Cybersecurity Career Paths](#vpn-and-cybersecurity-career-paths)
 - [Key Terms Glossary](#key-terms-glossary)
 - [Summary](#summary)
-- [Further Reading](#further-reading)
 
 ## What Is a VPN
 
