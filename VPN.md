@@ -5,7 +5,6 @@
 > **الهدف من الـ Section ده:**  
 > هتفهم إيه هي الـ **VPN**، إزاي بتشتغل تقنياً باستخدام **IPsec**، وليه الشركات بتعتمد عليها بدل الـ Leased Lines الغالية، وكمان هتفهم رحلة الـ Packet خطوة بخطوة من مكتب فرعي لحد الـ Headquarters.
 
-# Virtual Private Networks (VPN): Concepts, Security, and Packet Flow
 
 ## Learning Objectives
 
