@@ -18,25 +18,25 @@ By the end of this section, you will be able to:
 
 ## Table of Contents
 
-- [1. Introduction to Wi-Fi and the 802.11 Standard](#1-introduction-to-wi-fi-and-the-80211-standard)
-- [2. Why Wireless Traffic Needs Encryption](#2-why-wireless-traffic-needs-encryption)
-- [3. Evolution of Wi-Fi Security Standards](#3-evolution-of-wi-fi-security-standards)
-  - [3.1 WEP: A Broken Standard](#31-wep-a-broken-standard)
-  - [3.2 WPA and the Move to WPA2/WPA3](#32-wpa-and-the-move-to-wpa2wpa3)
-- [4. Management Frames and the Limits of Encryption](#4-management-frames-and-the-limits-of-encryption)
-  - [4.1 The Role of Beacon Frames](#41-the-role-of-beacon-frames)
-  - [4.2 What Remains Visible Even with Encryption](#42-what-remains-visible-even-with-encryption)
-- [5. Common Wi-Fi Security Myths](#5-common-wi-fi-security-myths)
-  - [5.1 Hiding the SSID](#51-hiding-the-ssid)
-  - [5.2 MAC Filtering](#52-mac-filtering)
-- [6. Rogue Access Points and Man-in-the-Middle Attacks](#6-rogue-access-points-and-man-in-the-middle-attacks)
-- [7. Wireless Attack Flow Diagram](#7-wireless-attack-flow-diagram)
-- [8. Mitigations and Best Practices](#8-mitigations-and-best-practices)
-- [9. Career Connection](#9-career-connection)
-- [10. Key Terms Glossary](#10-key-terms-glossary)
-- [11. Summary](#11-summary)
+- [Introduction to Wi-Fi and the 802.11 Standard](#1-introduction-to-wi-fi-and-the-80211-standard)
+- [Why Wireless Traffic Needs Encryption](#2-why-wireless-traffic-needs-encryption)
+- [Evolution of Wi-Fi Security Standards](#3-evolution-of-wi-fi-security-standards)
+  - [WEP: A Broken Standard](#31-wep-a-broken-standard)
+  - [WPA and the Move to WPA2/WPA3](#32-wpa-and-the-move-to-wpa2wpa3)
+- [Management Frames and the Limits of Encryption](#4-management-frames-and-the-limits-of-encryption)
+  - [The Role of Beacon Frames](#41-the-role-of-beacon-frames)
+  - [What Remains Visible Even with Encryption](#42-what-remains-visible-even-with-encryption)
+- [Common Wi-Fi Security Myths](#5-common-wi-fi-security-myths)
+  - [Hiding the SSID](#51-hiding-the-ssid)
+  - [MAC Filtering](#52-mac-filtering)
+- [Rogue Access Points and Man-in-the-Middle Attacks](#6-rogue-access-points-and-man-in-the-middle-attacks)
+- [Wireless Attack Flow Diagram](#7-wireless-attack-flow-diagram)
+- [Mitigations and Best Practices](#8-mitigations-and-best-practices)
+- [Career Connection](#9-career-connection)
+- [Key Terms Glossary](#10-key-terms-glossary)
+- [Summary](#11-summary)
 
-## 1. Introduction to Wi-Fi and the 802.11 Standard
+## Introduction to Wi-Fi and the 802.11 Standard
 
 **Wi-Fi** بيعتمد على مجموعة معايير الشبكات اللاسلكية المعروفة باسم **IEEE 802.11**. مع مرور الوقت، ظهر نظام تسمية أبسط عشان يسهّل على المستخدمين العاديين فهم الجيل اللي بيستخدموه، فبقينا نسمع مصطلحات زي:
 
@@ -51,15 +51,15 @@ By the end of this section, you will be able to:
 > [!NOTE]
 > الطبيعة "المفتوحة" لوسط النقل في الـ Wi-Fi هي السبب الجذري اللي بيخلي الأمان اللاسلكي موضوع حساس جدًا، لأن أي حد في النطاق يقدر نظريًا يستقبل الإشارة.
 
-## 2. Why Wireless Traffic Needs Encryption
+## Why Wireless Traffic Needs Encryption
 
 بما إن حركة المرور اللاسلكية بتنتقل عبر **shared medium** (وسط مشترك يقدر أي حد قريب يوصله)، فالتشفير (**encryption**) بيبقى أمر أساسي مش اختياري. من غير تشفير، أي جهاز في نطاق الإشارة يقدر يلتقط البيانات المرسلة ويقرأها بسهولة.
 
 الفكرة الأساسية إن التشفير هنا بيحل مشكلة **Confidentiality**: حتى لو حد قدر يستقبل الإشارة، البيانات نفسها هتكون غير مفهومة (unreadable) من غير المفتاح الصحيح.
 
-## 3. Evolution of Wi-Fi Security Standards
+## Evolution of Wi-Fi Security Standards
 
-### 3.1 WEP: A Broken Standard
+### WEP: A Broken Standard
 
 **WEP (Wired Equivalent Privacy)** كان أول محاولة رسمية لتأمين شبكات الـ Wi-Fi، لكنه اتكشف إنه معيار **ضعيف ومكسور (broken)** من الناحية التصميمية.
 
@@ -68,7 +68,7 @@ By the end of this section, you will be able to:
 > [!WARNING]
 > خطأ شائع إن الناس يفتكروا إن زيادة حجم المفتاح (key size) بتحل مشكلة التشفير الضعيف. الحقيقة إن المشكلة في WEP كانت في **التصميم نفسه** (design) وطريقة توليد العشوائية (randomness)، مش في طول المفتاح بس. زيادة الطول من غير إصلاح المشكلة الجذرية مبتحلش حاجة.
 
-### 3.2 WPA and the Move to WPA2/WPA3
+### WPA and the Move to WPA2/WPA3
 
 بعد اكتشاف عيوب WEP، ظهر **WPA (Wi-Fi Protected Access)** كحل مؤقت، لكنه هو كمان اعتُبر بمرور الوقت معيار غير كافٍ للأمان الحديث.
 
@@ -80,9 +80,9 @@ By the end of this section, you will be able to:
 > [!IMPORTANT]
 > الشبكات اللاسلكية الحديثة لازم تستخدم **WPA2** أو **WPA3** حصريًا، مع كلمات مرور قوية (**strong passwords**) وإعدادات آمنة (**secure configuration**). استخدام WEP أو WPA القديم بقى غير مقبول أمنيًا في أي بيئة إنتاجية.
 
-## 4. Management Frames and the Limits of Encryption
+## Management Frames and the Limits of Encryption
 
-### 4.1 The Role of Beacon Frames
+### The Role of Beacon Frames
 
 جهاز الـ Wi-Fi بيستخدم **Destination MAC Address** الموجود في الـ frame عشان يقرر هل الـ frame ده موجّه له فعلًا ولازم يعالجه، ولا لأ.
 
@@ -93,7 +93,7 @@ By the end of this section, you will be able to:
 - الـ **SSID** (اسم الشبكة).
 - الـ **capabilities** المدعومة من الشبكة (زي المعايير والسرعات المتاحة).
 
-### 4.2 What Remains Visible Even with Encryption
+### What Remains Visible Even with Encryption
 
 حتى لو الشبكة شغالة بتشفير قوي (زي WPA2/WPA3)، فيه معلومات معينة ممكن تفضل مرئية لأي حد بيراقب حركة المرور، من ضمنها:
 
@@ -107,9 +107,9 @@ By the end of this section, you will be able to:
 > [!TIP]
 > للتطبيقات الحساسة، الاعتماد على تشفير الـ Wi-Fi وحده مش كافي دايمًا. إضافة طبقة تشفير إضافية زي **HTTPS** أو **VPN** بتوفر حماية end-to-end فعلية بغض النظر عن أمان الشبكة اللاسلكية نفسها.
 
-## 5. Common Wi-Fi Security Myths
+## Common Wi-Fi Security Myths
 
-### 5.1 Hiding the SSID
+### Hiding the SSID
 
 الـ **SSID** هو اسم الشبكة اللاسلكية، وبيتم الإعلان عنه عادةً عن طريق الـ **beacon frames** عشان الأجهزة تقدر تكتشف الشبكات المتاحة.
 
@@ -120,7 +120,7 @@ By the end of this section, you will be able to:
 > [!WARNING]
 > إخفاء الـ SSID بيوفر **قدر ضئيل جدًا من الأمان الحقيقي (security through obscurity)** ومينفعش يتعامل معاه كبديل للتشفير الفعلي القوي.
 
-### 5.2 MAC Filtering
+### MAC Filtering
 
 **MAC Filtering** هو إعداد بيسمح للمسؤول (**administrator**) يحدد إن مين بالظبط، من خلال عناوين الـ MAC، مسموح له بالاتصال بالشبكة.
 
@@ -129,7 +129,7 @@ By the end of this section, you will be able to:
 > [!IMPORTANT]
 > المصادقة القوية (**strong authentication**) والتشفير عن طريق **WPA2** و **WPA3** أهم بكتير من إخفاء الـ SSID أو الاعتماد على الـ MAC filtering كطبقة حماية أساسية.
 
-## 6. Rogue Access Points and Man-in-the-Middle Attacks
+## Rogue Access Points and Man-in-the-Middle Attacks
 
 **Rogue Access Point** هي نقطة وصول لاسلكية غير مصرح بيها، بيقوم المهاجم بوضعها على الشبكة أو بإنشائها بهدف جذب الضحايا للاتصال بيها.
 
@@ -146,7 +146,7 @@ By the end of this section, you will be able to:
 > [!NOTE]
 > استخدام **HTTPS** القوي بيساعد في حماية بيانات التطبيقات حتى لو شبكة الـ Wi-Fi نفسها غير موثوقة، لأن التشفير هنا بيحصل على مستوى التطبيق مش على مستوى الشبكة اللاسلكية فقط.
 
-## 7. Wireless Attack Flow Diagram
+## Wireless Attack Flow Diagram
 
 المخطط التالي بيوضح إزاي هجوم الـ Rogue Access Point بيؤدي لحالة Man-in-the-Middle:
 
@@ -166,7 +166,7 @@ flowchart LR
     C --> D["Destination Server"]
 ```
 
-## 8. Mitigations and Best Practices
+## Mitigations and Best Practices
 
 الجدول التالي بيلخّص أهم الإجراءات الوقائية للمستخدمين والمؤسسات:
 
@@ -180,7 +180,7 @@ flowchart LR
 | المؤسسات | تنفيذ مراقبة لاسلكية (wireless monitoring) لاكتشاف الـ Rogue APs |
 | المؤسسات | تطبيق ضوابط الوصول للشبكة (Network Access Control - NAC) |
 
-## 9. Career Connection
+## Career Connection
 
 فهم أمان الشبكات اللاسلكية له تطبيقات مباشرة في مسارات مهنية متعددة:
 
@@ -188,7 +188,7 @@ flowchart LR
 - في مجال **Pentesting**، اختبار أمان الشبكات اللاسلكية (Wireless Penetration Testing) بيشمل محاولة كسر WPA2/WPA3 واختبار مدى فعالية إعدادات الشبكة.
 - في مجال **GRC (Governance, Risk, and Compliance)**، وجود سياسات واضحة لاستخدام الشبكات اللاسلكية جزء أساسي من متطلبات الامتثال في معايير أمنية متعددة.
 
-## 10. Key Terms Glossary
+## Key Terms Glossary
 
 | Term | Definition |
 |---|---|
@@ -201,7 +201,7 @@ flowchart LR
 | **Rogue Access Point** | نقطة وصول لاسلكية غير مصرح بها، تُستخدم لجذب الضحايا وتنفيذ هجمات. |
 | **Man-in-the-Middle (MITM)** | هجوم يقوم فيه المهاجم بوضع نفسه بين طرفي الاتصال لمراقبته أو التلاعب به. |
 
-## 11. Summary
+## Summary
 
 - الـ **Wi-Fi** بيعتمد على معايير **802.11** وبيستخدم الهواء كوسط نقل مشترك، وده بيخلي التشفير أمر ضروري وليس اختياريًا.
 - **WEP** معيار مكسور بسبب ضعف تصميمي في RC4 وطريقة توليد الـ IVs، ولا يمكن إصلاحه بمجرد زيادة طول المفتاح.
