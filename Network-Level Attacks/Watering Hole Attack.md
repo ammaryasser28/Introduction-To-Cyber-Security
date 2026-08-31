@@ -2,7 +2,8 @@
 |---|---|---|---|
 | Watering Hole Attack | Intermediate | ~12 min | Basic understanding of social engineering and reconnaissance concepts |
 
-الهدف من الـ Section ده: هتفهم إيه هو الـ Watering Hole Attack، وإزاي المهاجم بيستهدف موقع تالت طرف بدل ما يهاجم المؤسسة مباشرة، وإزاي فريق الـ SOC يقدر يكتشف الهجوم ده.
+> **الهدف من الـ Section ده:**  
+>  هتفهم إيه هو الـ Watering Hole Attack، وإزاي المهاجم بيستهدف موقع تالت طرف بدل ما يهاجم المؤسسة مباشرة، وإزاي فريق الـ SOC يقدر يكتشف الهجوم ده.
 
 
 
