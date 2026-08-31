@@ -2,7 +2,9 @@
 |---|---|---|---|
 | Spoofing | Beginner | ~14 min | Basic understanding of networking concepts (IP addressing, MAC addresses) |
 
-الهدف من الـ Section ده: هتفهم إيه هو الـ Spoofing وإزاي المهاجم يقدر يزوّر مصدر الاتصال على مستويات مختلفة (IP, MAC, Email)، وليه ده بيبقى خطير وبيتستخدم كجزء من هجمات أكبر.
+> **الهدف من الـ Section ده:**  
+> هتفهم إيه هو الـ Spoofing وإزاي المهاجم يقدر يزوّر مصدر الاتصال على مستويات مختلفة (IP, MAC, Email)، وليه ده بيبقى خطير وبيتستخدم كجزء من هجمات أكبر.
+
 
 
 ## Learning Objectives
