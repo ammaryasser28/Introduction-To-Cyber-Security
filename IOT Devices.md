@@ -18,19 +18,19 @@ By the end of this section, you will be able to:
 
 ## Table of Contents
 
-- [What Is IoT](#1-what-is-iot)
-- [The Scale Problem: IoT and the Attack Surface](#2-the-scale-problem-iot-and-the-attack-surface)
-- [Resource Constraints in IoT Devices](#3-resource-constraints-in-iot-devices)
-- [The Absence of a Universal Security Standard](#4-the-absence-of-a-universal-security-standard)
-- [Linux in IoT Devices and the Shellshock Example](#5-linux-in-iot-devices-and-the-shellshock-example)
-  - [Understanding Shellshock](#51-understanding-shellshock)
-  - [Linux Does Not Equal Vulnerable](#52-linux-does-not-equal-vulnerable)
-- [Why Manufacturers Fall Short on Security](#6-why-manufacturers-fall-short-on-security)
-- [IoT Security Across the Device Lifecycle](#7-iot-security-across-the-device-lifecycle)
-- [Device Lifecycle Diagram](#8-device-lifecycle-diagram)
-- [Career Connection](#9-career-connection)
-- [Key Terms Glossary](#10-key-terms-glossary)
-- [Summary](#11-summary)
+- [What Is IoT](#what-is-iot)
+- [The Scale Problem: IoT and the Attack Surface](#the-scale-problem-iot-and-the-attack-surface)
+- [Resource Constraints in IoT Devices](#resource-constraints-in-iot-devices)
+- [The Absence of a Universal Security Standard](#the-absence-of-a-universal-security-standard)
+- [Linux in IoT Devices and the Shellshock Example](#linux-in-iot-devices-and-the-shellshock-example)
+  - [Understanding Shellshock](#understanding-shellshock)
+  - [Linux Does Not Equal Vulnerable](#linux-does-not-equal-vulnerable)
+- [Why Manufacturers Fall Short on Security](#why-manufacturers-fall-short-on-security)
+- [IoT Security Across the Device Lifecycle](#iot-security-across-the-device-lifecycle)
+- [Device Lifecycle Diagram](#device-lifecycle-diagram)
+- [Career Connection](#career-connection)
+- [Key Terms Glossary](#key-terms-glossary)
+- [Summary](#summary)
 
 ## What Is IoT
 
