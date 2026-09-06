@@ -2,7 +2,10 @@
 |---|---|---|---|
 | Network Security Fundamentals: VLANs and Firewalls | Beginner | ~18 min | Basic understanding of networks, switches, and IP addressing |
 
-الهدف من الـ Section ده: هتفهم إزاي الـ VLANs بتقسّم شبكة فيزيائية واحدة لشبكات منطقية متعددة، وإزاي الـ Firewalls بتشتغل كحارس أمن للشبكة، مش بس على حدود الإنترنت، لكن كمان جوه المؤسسة نفسها عن طريق الـ Network Segmentation.
+> **الهدف من الـ Section ده:**  
+>   هتفهم إزاي الـ VLANs بتقسّم شبكة فيزيائية واحدة لشبكات منطقية متعددة، وإزاي الـ Firewalls بتشتغل كحارس أمن للشبكة، مش بس على حدود الإنترنت، لكن كمان جوه المؤسسة نفسها عن طريق الـ Network Segmentation.
+
+
 
 # Network Security Fundamentals: VLANs and Firewalls
 
