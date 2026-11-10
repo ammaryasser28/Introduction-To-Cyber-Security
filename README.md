@@ -1,10 +1,12 @@
 # Introduction to Cybersecurity — Study Notes
 
-![Fundamentals](https://img.shields.io/badge/Fundamentals-informational) ![Network Security](https://img.shields.io/badge/Network%20Security-informational)
+[![Read online](https://img.shields.io/badge/Read%20online-Blue%20Team%20Notes-2747c9?logo=bookstack&logoColor=white)](https://ammaryasser28.github.io/?t=intro) ![Fundamentals](https://img.shields.io/badge/Fundamentals-informational) ![Network Security](https://img.shields.io/badge/Network%20Security-informational)
 
 Study notes and practical exercises from the **Introduction to Cybersecurity** course, building the foundation every security analyst needs: how networks and the web work, how common attacks exploit them, and which security controls stop them.
 
-> 🌐 **Language:** explanations are written in Arabic (Egyptian dialect) with all technical terms and commands kept in English.
+📖 **Read it online:** every note in this repo is on [Blue Team Notes](https://ammaryasser28.github.io/?t=intro), with interactive diagrams, search across all four courses, and progress tracking.
+
+> 🌐 **Language:** the notes are written in Arabic (Egyptian dialect), with every technical term and command kept in English. Each note also has a full English version: switch to **EN** at the top of [the site](https://ammaryasser28.github.io/?t=intro&lang=en).
 
 ## What's Covered
 
@@ -100,7 +102,7 @@ Study notes and practical exercises from the **Introduction to Cybersecurity** c
 
 ---
 
-**Author:** Amr Yasser — SOC Analyst | Cybersecurity Mentor at Route Academy  
+**Author:** Bn Yasser — SOC Analyst  
 [LinkedIn](https://www.linkedin.com/in/bn-yasser-424bb4215/) · [GitHub](https://github.com/ammaryasser28)
 
 ⭐ If these notes help you, consider giving the repo a star.
