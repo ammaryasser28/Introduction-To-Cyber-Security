@@ -96,6 +96,9 @@ Sinkholes are also widely used by security teams to stop **malware**: if a virus
 > [!TIP]
 > Using a sinkhole against malware is an excellent example of how a tool originally designed for one purpose (preventing employees from accessing certain sites) can be adopted and used as a much broader defensive tool in cybersecurity.
 
+> [!NOTE]
+> The in-depth explanation of the sinkhole, how an attacker can bypass it with the Host header and SNI, and how that bypass gets detected, is in the [DNS Sinkhole](../DNS/DNS%20Sinkhole.md) note.
+
 ## Firewall Rules vs. Sinkhole Diagram
 
 The following diagram compares the blocking path using traditional firewall rules with the blocking path using a DNS sinkhole:
