@@ -66,6 +66,9 @@ Devices in **different VLANs**, however, remain **isolated** from each other, un
 > [!IMPORTANT]
 > This isolation isn't a flaw or a limitation; it's exactly the core security goal of using VLANs in the first place: preventing unwanted communication between different groups of devices, unless the administrators have explicitly decided to allow it through routing.
 
+> [!TIP]
+> This is a quick summary of VLANs so the rest of the note makes sense. The full explanation, including 802.1Q tagging, port types, and VLAN attacks, is in the [VLANs](../Network%20Notes/VLANs.md) note.
+
 ## Firewalls: What Are They
 
 A **Firewall** is essentially a security guard standing at the door of your network. Every piece of traffic, whether incoming or outgoing data, has to pass this guard first.
