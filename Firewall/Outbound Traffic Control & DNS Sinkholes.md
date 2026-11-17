@@ -96,6 +96,9 @@ By the end of this section, you will be able to:
 > [!TIP]
 > استخدام الـ Sinkhole ضد الـ Malware مثال ممتاز على إزاي أداة الأصل مصممة لحاجة (منع دخول موظفين لمواقع معينة) ممكن تتبنى وتُستخدم كأداة دفاعية أوسع بكتير في مجال الأمن السيبراني.
 
+> [!NOTE]
+> الشرح العميق للـ Sinkhole، وإزاي المهاجم ممكن يتخطاه بالـ Host header والـ SNI وإزاي ده بيتكشف، موجود في نوت [DNS Sinkhole](../DNS/DNS%20Sinkhole.md).
+
 ## Firewall Rules vs. Sinkhole Diagram
 
 المخطط التالي بيقارن بين مسار الحظر باستخدام قواعد الفايروول التقليدية، ومسار الحظر باستخدام الـ DNS Sinkhole:
