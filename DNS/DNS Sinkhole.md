@@ -1,6 +1,6 @@
 | Topic | Level | Reading Time | Prerequisites |
 |---|---|---|---|
-| DNS Sinkhole: How It Works and How It Can Be Bypassed | Intermediate | ~20 min | Defense in Depth Model, basic idea of DNS and HTTPS |
+| DNS Sinkhole: How It Works and How It Can Be Bypassed | Intermediate | ~20 min | Understanding DNS, basic idea of HTTPS |
 
 > **الهدف من الـ Section ده:**  
 > هتفهم ليه الحجب بالـ Firewall لوحده مش Scalable، وإيه هو الـ DNS Sinkhole وإزاي بيشتغل خطوة بخطوة، وإيه الـ Limitations بتاعته، وإيه اللي ممكن يخلي حد يـ bypass التقنية دي.
