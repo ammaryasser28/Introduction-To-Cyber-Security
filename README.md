@@ -18,7 +18,7 @@ Study notes and practical exercises from the **Introduction to Cybersecurity** c
 - Web fundamentals: how browsers talk to servers, cookies, CDNs, and HTTPS / TLS
 - OS hardening and patch management, virtualization, cloud, IoT, and wireless security
 
-## Contents (56 notes)
+## Contents (54 notes)
 
 ### Cryptography
 
@@ -88,8 +88,6 @@ Study notes and practical exercises from the **Introduction to Cybersecurity** c
 - [IOT Devices](IOT%20Devices.md)
 - [Identity, Access Control, & Security Fundamentals](Identity%2C%20Access%20Control%2C%20%26%20Security%20Fundamentals.md)
 - [Malware & Antivirus](Malware%20%26%20Antivirus.md)
-- [Network Reconnaissance & Security Tools](Network%20Reconnaissance%20%26%20Security%20Tools.md)
-- [Network-Level Attacks](Network-Level%20Attacks.md)
 - [SSH, SSL & TLS, and HTTPS](SSH%2C%20SSL%20%26%20TLS%2C%20and%20HTTPS.md)
 - [Secure Software Design & Fuzzing](Secure%20Software%20Design%20%26%20Fuzzing.md)
 - [Sniffers & Port Scanning](Sniffers%20%26%20Port%20Scanning.md)
